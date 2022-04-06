@@ -10,21 +10,15 @@ class ItemDetail extends HookConsumerWidget {
     /// 画面上のバー
     final appBar = AppBar(title: const Text('ItemDetail'));
 
-    final list = ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          width: 300,
-          height: 100,
-          child: Text('$index'),
-        );
-      },
-      itemCount: 13,
-    );
+    final column = Column(children: [
+      Text('Icon グレープ'),
+      Text('BNN 240 (前日比 +20)'),
+    ]);
 
     /// 画面
     return Scaffold(
       appBar: appBar,
-      body: list,
+      body: column,
     );
   }
 }

@@ -10,7 +10,8 @@ class ItemHeader extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final column = Column(children: [
-      const Text('前日比'),
+      Text('Icon グレープ'),
+      Text('BNN 240 (前日比 +20)'),
       ElevatedButton(
         onPressed: onPressedDetail,
         child: Text('詳しくみる'),
