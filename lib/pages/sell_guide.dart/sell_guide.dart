@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/item_header.dart';
 import 'package:mobile_app/components/item_stepper.dart';
-import 'package:mobile_app/router/page_id.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/item_table.dart';
 import 'package:mobile_app/state/receipt.dart';
@@ -36,7 +35,7 @@ class SellGuide extends HookConsumerWidget {
           inCoinCount: inCoinCount,
         );
         ref.read(receipt.notifier).update(newRcpt);
-        ref.read(router).pushBaseNavi(PageId.tradeConfirm);
+        router.push(PageId.tradeConfirm);
       },
       child: const Text('Sell'),
     );
@@ -44,7 +43,7 @@ class SellGuide extends HookConsumerWidget {
     final column = Column(children: [
       ItemHeader(
         onPressedDetail: () {
-          ref.read(router).pushBaseNavi(PageId.itemDetail);
+          router.push(PageId.itemDetail);
         },
       ),
       ItemStepper(),

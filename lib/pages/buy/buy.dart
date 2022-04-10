@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/features/get_buy_list.dart';
-import 'package:mobile_app/router/page_id.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/item_table.dart';
 import 'package:mobile_app/state/receipt.dart';
@@ -50,7 +49,7 @@ class Buy extends HookConsumerWidget {
             inCoinCount: 0,
           );
           ref.read(receipt.notifier).update(rcpt);
-          ref.read(router).pushBaseNavi(PageId.buyGuide);
+          router.push(PageId.buyGuide, params: {'item_id': '35'});
         },
       ),
     );

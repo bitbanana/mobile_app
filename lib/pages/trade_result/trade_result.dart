@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/pages/top/top.dart';
-import 'package:mobile_app/router/page_id.dart';
 import 'package:mobile_app/router/router.dart';
 
 /// アプリ
@@ -18,8 +17,8 @@ class TradeResult extends HookConsumerWidget {
 
     final button = ElevatedButton(
       onPressed: () {
-        ref.read(tabIndex.notifier).selectTab(1);
-        ref.read(router).setBaseNavi([PageId.top]);
+        tabRouter.select(TabPageId.sell);
+        router.push(PageId.top);
       },
       child: const Text('OK'),
     );

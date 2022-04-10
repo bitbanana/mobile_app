@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile_app/components/item_header.dart';
 import 'package:mobile_app/components/item_stepper.dart';
-import 'package:mobile_app/router/page_id.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/item_table.dart';
 import 'package:mobile_app/state/receipt.dart';
@@ -11,7 +9,8 @@ import 'package:mobile_app/types/receipt.dart';
 
 /// アプリ
 class BuyGuide extends HookConsumerWidget {
-  const BuyGuide({Key? key}) : super(key: key);
+  final int? itemId;
+  const BuyGuide({required this.itemId, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,7 +36,7 @@ class BuyGuide extends HookConsumerWidget {
           inCoinCount: 0,
         );
         ref.read(receipt.notifier).update(newRcpt);
-        ref.read(router).pushBaseNavi(PageId.tradeConfirm);
+        router.push(PageId.tradeConfirm);
       },
       child: const Text('Buy'),
     );
@@ -45,11 +44,12 @@ class BuyGuide extends HookConsumerWidget {
     final column = Column(children: [
       ItemHeader(
         onPressedDetail: () {
-          ref.read(router).pushBaseNavi(PageId.itemDetail);
+          router.push(PageId.itemDetail);
         },
       ),
       ItemStepper(),
       button,
+      Text('受け取った Item ID: ${itemId}'),
     ]);
     final center = Center(child: column);
 

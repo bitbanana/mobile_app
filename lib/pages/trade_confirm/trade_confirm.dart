@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/router/page_id.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/receipt.dart';
 
@@ -20,7 +19,7 @@ class TradeConfirm extends HookConsumerWidget {
 
     final button = ElevatedButton(
       onPressed: () {
-        ref.read(router).pushBaseNavi(PageId.tradeResult);
+        router.push(PageId.tradeResult);
       },
       child: const Text('Buy'),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/router/page_id.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/history.dart';
 import 'package:mobile_app/state/receipt.dart';
@@ -45,7 +44,7 @@ class History extends HookConsumerWidget {
         ),
         onTap: () {
           ref.read(receipt.notifier).update(rcpt);
-          ref.read(router).pushBaseNavi(PageId.buyGuide);
+          router.push(PageId.buyGuide);
         },
       ),
     );
