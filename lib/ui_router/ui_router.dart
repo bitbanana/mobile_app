@@ -5,30 +5,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui_router/provider.dart';
-
 export 'package:mobile_app/ui_router/tab_router.dart';
 
-// T = Type of Page ID
-
-class _State<T> {
-  final List<_Element<T>> stack;
-
-  const _State({
-    required this.stack,
-  });
-}
-
-class UiPage<T> {
-  final T id;
-  final Widget Function(Map<String, String> params) build;
-  const UiPage({
-    required this.id,
-    required this.build,
-  });
-}
-
-class _Element<T> {
-  final T pageId;
+class _Element<PageId> {
+  final PageId pageId;
   final Map<String, String> params;
   _Element({
     required this.pageId,
@@ -36,13 +16,30 @@ class _Element<T> {
   });
 }
 
-class _RouterWidget<T> extends StatelessWidget {
-  final UiRouter<T> _router;
+class _State<PageId> {
+  final List<_Element<PageId>> stack;
+
+  const _State({
+    required this.stack,
+  });
+}
+
+class UiPage<PageId> {
+  final PageId id;
+  final Widget Function(Map<String, String> params) build;
+  const UiPage({
+    required this.id,
+    required this.build,
+  });
+}
+
+class _RouterWidget<PageId> extends StatelessWidget {
+  final UiRouter<PageId> _router;
   // ignore: use_key_in_widget_constructors
   const _RouterWidget(this._router);
 
-  Widget buildPage(UiRouter<T> r, _Element ele) {
-    final page = r.pages.cast<UiPage<T>?>().firstWhere(
+  Widget buildPage(UiRouter<PageId> r, _Element ele) {
+    final page = r.pages.cast<UiPage<PageId>?>().firstWhere(
           (p) => p?.id == ele.pageId,
           orElse: () => null,
         );
@@ -55,7 +52,7 @@ class _RouterWidget<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final consumer = Consumer<UiRouter<T>>(
+    final consumer = Consumer<UiRouter<PageId>>(
       builder: (context, r, child) {
         final navigator = Navigator(
           pages: [
@@ -84,13 +81,13 @@ class _RouterWidget<T> extends StatelessWidget {
   }
 }
 
-class UiRouter<T> extends ChangeNotifier {
-  final List<UiPage<T>> pages;
-  _State<T> _state;
+class UiRouter<PageId> extends ChangeNotifier {
+  final List<UiPage<PageId>> pages;
+  _State<PageId> _state;
   Widget? cacheWidget;
 
   UiRouter({
-    required T initialPageId,
+    required PageId initialPageId,
     required this.pages,
   }) : _state = _State(
           stack: [
@@ -102,12 +99,12 @@ class UiRouter<T> extends ChangeNotifier {
         );
 
   Widget widget() {
-    cacheWidget ??= _RouterWidget<T>(this);
+    cacheWidget ??= _RouterWidget<PageId>(this);
     return cacheWidget!;
   }
 
   push(
-    T pageId, {
+    PageId pageId, {
     Map<String, String> params = const {},
   }) {
     final idParams = _Element(pageId: pageId, params: params);
@@ -120,7 +117,7 @@ class UiRouter<T> extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<_Element<T>> stack() {
+  List<_Element<PageId>> stack() {
     return _state.stack;
   }
 }

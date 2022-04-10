@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/ui_router/provider.dart';
 import 'package:mobile_app/router/router.dart';
 
-class _State<T> {
-  final T tabPageId;
+class _State<PageId> {
+  final PageId tabPageId;
 
   const _State({
     required this.tabPageId,
   });
 }
 
-class TabPage<T> {
-  final T id;
+class TabPage<PageId> {
+  final PageId id;
   final Widget tabIcon;
   final String tabLabel;
   final Widget Function() build;
@@ -27,38 +27,38 @@ class TabPage<T> {
   });
 }
 
-class TabRouter<T> extends ChangeNotifier {
-  _State<T> _state;
-  final List<TabPage<T>> tabPages;
+class TabRouter<PageId> extends ChangeNotifier {
+  _State<PageId> _state;
+  final List<TabPage<PageId>> tabPages;
   Widget? cacheWidget;
 
   TabRouter({
-    required T initialTabPageId,
+    required PageId initialTabPageId,
     required this.tabPages,
   }) : _state = _State(tabPageId: initialTabPageId);
 
   Widget widget() {
-    cacheWidget ??= _RouterWidget<T>(this);
+    cacheWidget ??= _RouterWidget<PageId>(this);
     return cacheWidget!;
   }
 
-  T tabPageId() {
+  PageId tabPageId() {
     return _state.tabPageId;
   }
 
-  select(T tabPageId) {
+  select(PageId tabPageId) {
     _state = _State(tabPageId: tabPageId);
     notifyListeners();
   }
 }
 
-class _RouterWidget<T> extends StatelessWidget {
-  final TabRouter<T> _router;
+class _RouterWidget<PageId> extends StatelessWidget {
+  final TabRouter<PageId> _router;
   // ignore: use_key_in_widget_constructors
   const _RouterWidget(this._router);
 
-  Widget buildPage(TabRouter<T> r, T tabPageId) {
-    final page = r.tabPages.cast<TabPage<T>?>().firstWhere(
+  Widget buildPage(TabRouter<PageId> r, PageId tabPageId) {
+    final page = r.tabPages.cast<TabPage<PageId>?>().firstWhere(
           (p) => p?.id == tabPageId,
           orElse: () => null,
         );
@@ -77,7 +77,7 @@ class _RouterWidget<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final consumer = Consumer<TabRouter<T>>(
+    final consumer = Consumer<TabRouter<PageId>>(
       builder: (context, r, child) {
         /// 画面下のバー
         var naviBar = BottomNavigationBar(
@@ -86,7 +86,6 @@ class _RouterWidget<T> extends StatelessWidget {
               BottomNavigationBarItem(icon: page.tabIcon, label: page.tabLabel),
           ],
           currentIndex: r.tabPages.indexWhere((p) => p.id == r.tabPageId()),
-          fixedColor: Colors.blueAccent,
           onTap: (i) => _onItemTapped(r, i),
           type: BottomNavigationBarType.fixed,
         );
