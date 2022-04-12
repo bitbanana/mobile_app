@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   hooks_riverpod: ^1.0.3
+  ui_router:
+  intl:
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +22,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Digital
+      fonts:
+        - asset: assets/fonts/EHSMB.TTF

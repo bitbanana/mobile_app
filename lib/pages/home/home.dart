@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile_app/components/digital_counter.dart';
 import 'package:mobile_app/state/wallet.dart';
 
 /// アプリ
@@ -11,13 +12,22 @@ class Home extends HookConsumerWidget {
     final _wallet = ref.read(wallet);
 
     /// 画面上のバー
-    final appBar = AppBar(title: const Text('Home'));
+    final appBar = AppBar(
+      backgroundColor: Colors.black87,
+      foregroundColor: Colors.yellow[200],
+      title: const Text('Home'),
+    );
 
     final column = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const Text('ビットバナナ'),
-        Text('BNN ${_wallet.balance}'),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DigitalCounter(_wallet.balance),
+          ],
+        ),
       ],
     );
 
@@ -26,6 +36,7 @@ class Home extends HookConsumerWidget {
     /// 画面
     return Scaffold(
       appBar: appBar,
+      backgroundColor: Colors.yellow,
       body: center,
     );
   }

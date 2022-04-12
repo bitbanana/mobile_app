@@ -17,7 +17,7 @@ import 'package:mobile_app/pages/top/top.dart';
 import 'package:mobile_app/pages/trade_confirm/trade_confirm.dart';
 import 'package:mobile_app/pages/trade_result/trade_result.dart';
 // Page Router
-import 'package:mobile_app/ui_router/ui_router.dart';
+import 'package:ui_router/ui_router.dart';
 
 enum PageId {
   splash,
@@ -102,19 +102,19 @@ final tabRouter = TabRouter(
     ),
     TabPage(
       id: TabPageId.sell,
-      tabIcon: const Icon(Icons.home),
+      tabIcon: const Icon(Icons.arrow_upward_outlined),
       tabLabel: 'Sell',
       build: () => const Sell(),
     ),
     TabPage(
       id: TabPageId.buy,
-      tabIcon: const Icon(Icons.home),
+      tabIcon: const Icon(Icons.arrow_downward_outlined),
       tabLabel: 'Buy',
       build: () => const Buy(),
     ),
     TabPage(
       id: TabPageId.history,
-      tabIcon: const Icon(Icons.home),
+      tabIcon: const Icon(Icons.history),
       tabLabel: 'History',
       build: () => const History(),
     ),
