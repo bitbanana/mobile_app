@@ -1,0 +1,65 @@
+baseURL = "https://rbdog.github.io/banana_app"
+languageCode = 'ja'
+defaultContentLanguage = 'ja'
+title = 'Banana Docs'
+theme = 'hugo-tranquilpeak-theme'
+publishDir = "../docs"
+canonifyurls = true # 追加(相対URLを絶対URLに変換できるようにする)
+
+# HTMLタグを使用
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+# 記事のカテゴリーなどを紐付け
+[taxonomies]
+  tag = "tags"
+
+[author]
+  name = "banana"
+  bio = "flutterプロジェクト例"
+  job = "GitHubコントリビューター"
+  location = "Japan"
+  picture = "images/team.png" # themes/static/
+
+[params]
+  sidebarBehavior = 2
+  thumbnailImage = true
+  dateFormat = "2006-01-02"
+  thumbnailImagePosition = "left"
+  autoThumbnailImage = true
+  coverImage = "images/cover.jpg"
+  imageGallery = true
+  hierarchicalCategories = true
+  syntaxHighlighter = 'highlight.js'
+  relativeURLs = true
+
+# weight == sort
+
+# content/pages につながる
+[[menu.main]]
+  weight = 1
+  identifier = "docs"
+  name = "Home"
+  pre = "<i class=\"sidebar-button-icon fas fa-lg fa-home\" aria-hidden=\"true\"></i>"
+  url = "/docs/hello/"
+[[menu.main]]
+  weight = 2
+  identifier = "tags" # id == tags の場合は特別な処理がされる
+  name = "タグ検索"
+  pre = "<i class=\"sidebar-button-icon fas fa-lg fa-tags\" aria-hidden=\"true\"></i>"
+  url = "/tags"
+[[menu.main]]
+  weight = 3
+  identifier = "banana_app"
+  name = "banana_app"
+  pre = "<i class=\"sidebar-button-icon fas fa-lg fa-pen-nib\" aria-hidden=\"true\"></i>"
+  url = "/banana_app/root/"
+
+[[menu.links]]
+  weight = 1
+  identifier = "github"
+  name = "GitHub"
+  pre = "<i class=\"sidebar-button-icon fab fa-lg fa-github\" aria-hidden=\"true\"></i>"
+  url = "https://github.com/rbdog/banana_app"

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Banana Docs</title>
+    <link>https://rbdog.github.io/banana_app/</link>
+    <description>Recent content on Banana Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 04 Mar 2022 21:00:00 +0900</lastBuildDate><atom:link href="https://rbdog.github.io/banana_app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>/ (root)</title>
+      <link>https://rbdog.github.io/banana_app/banana_app/root/</link>
+      <pubDate>Fri, 04 Mar 2022 21:00:00 +0900</pubDate>
+      
+      <guid>https://rbdog.github.io/banana_app/banana_app/root/</guid>
+      <description>analysis_options.yaml このページで説明します   pubspec.yaml このページで説明します   LICENSE このページで説明します   README.md このページで説明します   assets/&amp;hellip; 説明はこちら   lib/&amp;hellip; 説明はこちら        analysis_options.yaml チームで統一したいコードの書き方のルールを決めておくと自動でチェックしてくれる lint 設定
+公式が用意してくれたテンプレートをカスタマイズして使う
+pubspec.yaml パッケージやバージョンを管理するためのファイル
+新しいパッケージを追加したい時やバージョンアップ時に変更する
+LICENSE ライセンス表記。公開パッケージにする場合は必須。
+README.md 新しく来た人が最初に読むファイル</description>
+    </item>
+    
+    <item>
+      <title>/assets/</title>
+      <link>https://rbdog.github.io/banana_app/banana_app/assets/</link>
+      <pubDate>Fri, 04 Mar 2022 21:00:00 +0900</pubDate>
+      
+      <guid>https://rbdog.github.io/banana_app/banana_app/assets/</guid>
+      <description>メインのソースコード
+         /images 画像   /fonts フォント        </description>
+    </item>
+    
+    <item>
+      <title>/lib/</title>
+      <link>https://rbdog.github.io/banana_app/banana_app/lib/</link>
+      <pubDate>Fri, 04 Mar 2022 21:00:00 +0900</pubDate>
+      
+      <guid>https://rbdog.github.io/banana_app/banana_app/lib/</guid>
+      <description>メインのソースコード
+         config/&amp;hellip; 設定値や定数   pages/&amp;hellip; 画面たち   center_client/&amp;hellip; &amp;ldquo;センター&amp;quot;サーバーとの通信   components/&amp;hellip; UI部品 e.g. ボタン ヘッダー   types/&amp;hellip; 受け渡しされるデータの構造   state/&amp;hellip; アプリの状態 e.g. 通信中 ログイン中のユーザー   utils/&amp;hellip; どのプロジェクトでも使えるようなDart言語を補う汎用コード        </description>
+    </item>
+    
+    <item>
+      <title>/lib/components/</title>
+      <link>https://rbdog.github.io/banana_app/banana_app/lib/components/</link>
+      <pubDate>Fri, 04 Mar 2022 21:00:00 +0900</pubDate>
+      
+      <guid>https://rbdog.github.io/banana_app/banana_app/lib/components/</guid>
+      <description>作成中のページです</description>
+    </item>
+    
+    <item>
+      <title>/lib/pages/</title>
+      <link>https://rbdog.github.io/banana_app/banana_app/lib/pages/</link>
+      <pubDate>Fri, 04 Mar 2022 21:00:00 +0900</pubDate>
+      
+      <guid>https://rbdog.github.io/banana_app/banana_app/lib/pages/</guid>
+      <description>         /profile 画像   /game_list フォント   /slot_list フォント        </description>
+    </item>
+    
+    <item>
+      <title>/lib/state/</title>
+      <link>https://rbdog.github.io/banana_app/banana_app/lib/state/</link>
+      <pubDate>Fri, 04 Mar 2022 21:00:00 +0900</pubDate>
+      
+      <guid>https://rbdog.github.io/banana_app/banana_app/lib/state/</guid>
+      <description>         /profile 画像   /game_list フォント   /slot_list フォント        </description>
+    </item>
+    
+    <item>
+      <title>Banana Developers</title>
+      <link>https://rbdog.github.io/banana_app/docs/hello/</link>
+      <pubDate>Fri, 04 Mar 2022 21:00:00 +0900</pubDate>
+      
+      <guid>https://rbdog.github.io/banana_app/docs/hello/</guid>
+      <description>開発者ページへようこそ
+お読みいただきありがとうございます
+目次          banana_app Flutterコードの説明です   開発チーム 作成中のページです        </description>
+    </item>
+    
+  </channel>
+</rss>

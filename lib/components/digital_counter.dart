@@ -10,7 +10,7 @@ class DigitalCounter extends StatelessWidget {
     final icon = Container(
       width: 36,
       height: 36,
-      child: Image.asset('images/banana.png'),
+      child: Image.asset('images/bitbanana.png'),
     );
     final formatter = NumberFormat("#,###");
     var digits = formatter.format(count);
