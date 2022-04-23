@@ -1,7 +1,7 @@
-baseURL = "https://rbdog.github.io/banana_app"
+baseURL = "https://bitbanana.github.io/mobile_app"
 languageCode = 'ja'
 defaultContentLanguage = 'ja'
-title = 'Banana Docs'
+title = 'Bit Banana Docs'
 theme = 'hugo-tranquilpeak-theme'
 publishDir = "../docs"
 canonifyurls = true # 追加(相対URLを絶対URLに変換できるようにする)
@@ -17,7 +17,7 @@ canonifyurls = true # 追加(相対URLを絶対URLに変換できるようにす
   tag = "tags"
 
 [author]
-  name = "banana"
+  name = "Bit Banana Team"
   bio = "flutterプロジェクト例"
   job = "GitHubコントリビューター"
   location = "Japan"
@@ -62,4 +62,4 @@ canonifyurls = true # 追加(相対URLを絶対URLに変換できるようにす
   identifier = "github"
   name = "GitHub"
   pre = "<i class=\"sidebar-button-icon fab fa-lg fa-github\" aria-hidden=\"true\"></i>"
-  url = "https://github.com/rbdog/banana_app"
+  url = "https://github.com/bitbanana/mobile_app"

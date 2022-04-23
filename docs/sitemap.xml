@@ -2,43 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://rbdog.github.io/banana_app/banana_app/root/</loc>
+    <loc>https://bitbanana.github.io/mobile_app/docs/hello/</loc>
+    <lastmod>2022-04-01T21:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://bitbanana.github.io/mobile_app/</loc>
+    <lastmod>2022-04-01T21:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://bitbanana.github.io/mobile_app/docs/</loc>
+    <lastmod>2022-04-01T21:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://bitbanana.github.io/mobile_app/tags/home/</loc>
+    <lastmod>2022-04-01T21:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://bitbanana.github.io/mobile_app/tags/</loc>
+    <lastmod>2022-04-01T21:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://bitbanana.github.io/mobile_app/mobile_app/root/</loc>
     <lastmod>2022-03-04T21:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://rbdog.github.io/banana_app/banana_app/assets/</loc>
+    <loc>https://bitbanana.github.io/mobile_app/mobile_app/assets/</loc>
     <lastmod>2022-03-04T21:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://rbdog.github.io/banana_app/banana_app/lib/</loc>
+    <loc>https://bitbanana.github.io/mobile_app/mobile_app/lib/</loc>
     <lastmod>2022-03-04T21:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://rbdog.github.io/banana_app/banana_app/lib/components/</loc>
+    <loc>https://bitbanana.github.io/mobile_app/mobile_app/lib/components/</loc>
     <lastmod>2022-03-04T21:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://rbdog.github.io/banana_app/banana_app/lib/pages/</loc>
+    <loc>https://bitbanana.github.io/mobile_app/mobile_app/lib/pages/</loc>
     <lastmod>2022-03-04T21:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://rbdog.github.io/banana_app/banana_app/lib/state/</loc>
+    <loc>https://bitbanana.github.io/mobile_app/mobile_app/lib/state/</loc>
     <lastmod>2022-03-04T21:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://rbdog.github.io/banana_app/docs/hello/</loc>
+    <loc>https://bitbanana.github.io/mobile_app/tags/code/</loc>
     <lastmod>2022-03-04T21:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://rbdog.github.io/banana_app/</loc>
-    <lastmod>2022-03-04T21:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://rbdog.github.io/banana_app/banana_app/</loc>
-    <lastmod>2022-03-04T21:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://rbdog.github.io/banana_app/tags/code/</loc>
-    <lastmod>2022-03-04T21:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://rbdog.github.io/banana_app/docs/</loc>
-    <lastmod>2022-03-04T21:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://rbdog.github.io/banana_app/tags/home/</loc>
-    <lastmod>2022-03-04T21:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://rbdog.github.io/banana_app/tags/</loc>
+    <loc>https://bitbanana.github.io/mobile_app/mobile_app/</loc>
     <lastmod>2022-03-04T21:00:00+09:00</lastmod>
   </url>
 </urlset>

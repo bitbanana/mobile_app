@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docs on Banana Docs</title>
-    <link>https://rbdog.github.io/banana_app/docs/</link>
-    <description>Recent content in Docs on Banana Docs</description>
+    <title>Docs on Bit Banana Docs</title>
+    <link>https://bitbanana.github.io/mobile_app/docs/</link>
+    <description>Recent content in Docs on Bit Banana Docs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 04 Mar 2022 21:00:00 +0900</lastBuildDate><atom:link href="https://rbdog.github.io/banana_app/docs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Apr 2022 21:00:00 +0900</lastBuildDate><atom:link href="https://bitbanana.github.io/mobile_app/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Banana Developers</title>
-      <link>https://rbdog.github.io/banana_app/docs/hello/</link>
-      <pubDate>Fri, 04 Mar 2022 21:00:00 +0900</pubDate>
+      <title>Bit Banana Developers</title>
+      <link>https://bitbanana.github.io/mobile_app/docs/hello/</link>
+      <pubDate>Fri, 01 Apr 2022 21:00:00 +0900</pubDate>
       
-      <guid>https://rbdog.github.io/banana_app/docs/hello/</guid>
+      <guid>https://bitbanana.github.io/mobile_app/docs/hello/</guid>
       <description>開発者ページへようこそ
-お読みいただきありがとうございます
-目次          banana_app Flutterコードの説明です   開発チーム 作成中のページです        </description>
+目次          mobile_app Flutterコードの説明です   開発チーム 作成中のページです        </description>
     </item>
     
   </channel>
