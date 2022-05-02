@@ -34,7 +34,7 @@ enum PageId {
 }
 
 final router = UiRouter(
-  initialPageId: PageId.top,
+  initialPageId: PageId.splash,
   pages: [
     UiPage(
       id: PageId.top,
@@ -42,7 +42,7 @@ final router = UiRouter(
     ),
     UiPage(
       id: PageId.sellGuide,
-      build: (params) => const SellGuide(),
+      build: (params) => SellGuide(fruit_id: params['fruit_id']),
     ),
     UiPage(
       id: PageId.sell,
@@ -54,8 +54,7 @@ final router = UiRouter(
     ),
     UiPage(
       id: PageId.buyGuide,
-      build: (params) =>
-          BuyGuide(itemId: int.parse(params['item_id'] ?? '-999')),
+      build: (params) => BuyGuide(fruit_id: params['fruit_id']),
     ),
     UiPage(
       id: PageId.history,

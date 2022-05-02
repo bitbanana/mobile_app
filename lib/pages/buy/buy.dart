@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/features/get_buy_list.dart';
+import 'package:mobile_app/components/blue_app_bar.dart';
+import 'package:mobile_app/components/on_appear.dart';
+import 'package:mobile_app/config/fixed_fruits.dart';
+import 'package:mobile_app/features/fetch_day_fruits.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/item_table.dart';
-import 'package:mobile_app/state/receipt.dart';
-import 'package:mobile_app/types/buy_list_item.dart';
-import 'package:mobile_app/types/receipt.dart';
+import 'package:mobile_app/state/day_fruits.dart';
+import 'package:mobile_app/types/day_fruit.dart';
 
 /// アプリ
 class Buy extends HookConsumerWidget {
@@ -13,17 +14,28 @@ class Buy extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final table = ref.watch(itemTable);
-    final items = getBuyList(table);
+    final fruits = ref.watch(dayFruits);
+
+    if (fruits == null) {
+      /// 表示されたとき
+      final onAppear = OnAppear(
+        () {
+          debugPrint('Buy からデータをフェッチします');
+          fetchDayFruits(ref);
+        },
+        child: const Text('画面準備中...'),
+      );
+      return onAppear;
+    }
 
     /// 画面上のバー
-    final appBar = AppBar(title: const Text('Buy'));
+    final appBar = BlueAppBar(title: 'Buy (購入可能フルーツ一覧)');
 
     /// リスト
     final list = ListView.builder(
       itemBuilder: (BuildContext context, int index) =>
-          buildItem(items[index], ref),
-      itemCount: items.length,
+          buildItem(fruits[index], ref),
+      itemCount: fruits.length,
     );
 
     /// 画面
@@ -34,22 +46,14 @@ class Buy extends HookConsumerWidget {
   }
 
   /// リストアイテム
-  Widget buildItem(BuyListItem item, WidgetRef ref) {
+  Widget buildItem(DayFruit f, WidgetRef ref) {
+    final fix = fixedFruits.firstWhere((e) => e.fruit_id == f.fruit_id);
     return Card(
       child: ListTile(
         leading: Icon(Icons.people),
-        title: Text('${item.imageUrl} ${item.name} (BNN: ${item.price})'),
+        title: Text('${fix.image_url} ${fix.nickname} (BNN: ${f.price})'),
         onTap: () {
-          final rcpt = Receipt(
-            outItemId: null,
-            outItemCount: 0,
-            outCoinCount: item.price,
-            inItemId: item.itemId,
-            inItemCount: 1,
-            inCoinCount: 0,
-          );
-          ref.read(receipt.notifier).update(rcpt);
-          router.push(PageId.buyGuide, params: {'item_id': '35'});
+          router.push(PageId.buyGuide, params: {'fruit_id': '${f.fruit_id}'});
         },
       ),
     );

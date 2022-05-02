@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/history.dart';
 import 'package:mobile_app/state/receipt.dart';
@@ -14,7 +15,7 @@ class History extends HookConsumerWidget {
     final rcpts = ref.read(history);
 
     /// 画面上のバー
-    final appBar = AppBar(title: const Text('History'));
+    final appBar = BlueAppBar(title: 'History (取引履歴)');
 
     final list = ListView.builder(
       itemBuilder: (BuildContext context, int index) =>

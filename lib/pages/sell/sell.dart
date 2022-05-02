@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/features/get_sell_list.dart';
+import 'package:mobile_app/components/blue_app_bar.dart';
+import 'package:mobile_app/components/on_appear.dart';
+import 'package:mobile_app/config/fixed_fruits.dart';
+import 'package:mobile_app/features/fetch_day_fruits.dart';
+import 'package:mobile_app/features/fetch_fruit_pockets.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/item_table.dart';
-import 'package:mobile_app/state/receipt.dart';
-import 'package:mobile_app/state/user.dart';
-import 'package:mobile_app/types/receipt.dart';
-import 'package:mobile_app/types/sell_list_item.dart';
+import 'package:mobile_app/state/day_fruits.dart';
+import 'package:mobile_app/state/fruit_pockets.dart';
+import 'package:mobile_app/types/fruit_pocket.dart';
+import 'package:mobile_app/web_api/see_fruits.dart';
 
 /// アプリ
 class Sell extends HookConsumerWidget {
@@ -14,18 +17,34 @@ class Sell extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _user = ref.read(user);
-    final _table = ref.watch(itemTable);
-    final items = getSellList(_user, _table);
+    final fruits = ref.watch(dayFruits);
+    final pockets = ref.watch(fruitPockets);
+
+    if (fruits == null || pockets == null) {
+      /// 表示されたとき
+      final onAppear = OnAppear(
+        () {
+          debugPrint('Sell からデータをフェッチします');
+          if (fruits == null) {
+            fetchDayFruits(ref);
+          }
+          if (pockets == null) {
+            fetchFruitPockets(ref);
+          }
+        },
+        child: const Text('画面準備中...'),
+      );
+      return onAppear;
+    }
 
     /// 画面上のバー
-    final appBar = AppBar(title: const Text('Sell'));
+    final appBar = BlueAppBar(title: 'Sell (Myフルーツ一覧)');
 
     /// リスト
     final list = ListView.builder(
       itemBuilder: (BuildContext context, int index) =>
-          buildItem(items[index], ref),
-      itemCount: items.length,
+          buildItem(pockets[index], ref),
+      itemCount: pockets.length,
     );
 
     /// 画面
@@ -36,22 +55,17 @@ class Sell extends HookConsumerWidget {
   }
 
   /// リストアイテム
-  Widget buildItem(SellListItem item, WidgetRef ref) {
+  Widget buildItem(FruitPocket p, WidgetRef ref) {
+    final fix = fixedFruits.firstWhere((e) => e.fruit_id == p.fruit_id);
+    final dayF =
+        ref.read(dayFruits)!.firstWhere((e) => e.fruit_id == p.fruit_id);
     return Card(
       child: ListTile(
         leading: Icon(Icons.people),
-        title: Text('${item.imageUrl} ${item.count} (BNN: ${item.totalPrice})'),
+        title:
+            Text('${fix.image_url} ${p.count} (BNN: ${p.count * dayF.price})'),
         onTap: () {
-          final rcpt = Receipt(
-            outItemId: item.itemId,
-            outItemCount: item.count,
-            outCoinCount: 0,
-            inItemId: null,
-            inItemCount: 0,
-            inCoinCount: item.totalPrice,
-          );
-          ref.read(receipt.notifier).update(rcpt);
-          router.push(PageId.sellGuide);
+          router.push(PageId.sellGuide, params: {'fruit_id': '${p.fruit_id}'});
         },
       ),
     );

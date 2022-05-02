@@ -3,3 +3,6 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
 
+analyzer:
+  errors:
+    invalid_annotation_target: ignore # Freezed を使用するため

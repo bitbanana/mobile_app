@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/receipt.dart';
 
@@ -15,7 +16,7 @@ class TradeConfirm extends HookConsumerWidget {
     }
 
     /// 画面上のバー
-    final appBar = AppBar(title: const Text('Trade Confirm'));
+    final appBar = BlueAppBar(title: 'Trade Confirm (取引確認)', canBack: true);
 
     final button = ElevatedButton(
       onPressed: () {

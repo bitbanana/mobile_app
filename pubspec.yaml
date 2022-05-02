@@ -10,15 +10,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  hooks_riverpod: ^1.0.3
-  ui_router:
-  intl:
-
+  hooks_riverpod: ^1.0.3 # 状態管理
+  ui_router: # ルーター
+  intl: # 数字のフォーマット
+  jose: # JWK
+  crypto: # RSA256ハッシュ関数
+  shared_preferences: # ローカルデータ永続化
+  freezed_annotation: # データ構造
+  json_serializable: # JSON変換
+  file_picker: # ファイルインポート
+  uuid: # UUID
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  build_runner:
+  freezed:
 
 flutter:
   uses-material-design: true

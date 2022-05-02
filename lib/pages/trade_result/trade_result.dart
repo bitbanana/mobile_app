@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/pages/top/top.dart';
+import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/router/router.dart';
 
 /// アプリ
@@ -10,10 +10,7 @@ class TradeResult extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     /// 画面上のバー
-    final appBar = AppBar(
-      title: const Text('Trade Result'),
-      automaticallyImplyLeading: false,
-    );
+    final appBar = BlueAppBar(title: 'Trade Result (取引結果画面)');
 
     final button = ElevatedButton(
       onPressed: () {

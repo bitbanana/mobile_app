@@ -4,7 +4,7 @@ import 'package:riverpod/riverpod.dart';
 /// バインド
 class Notifier extends StateNotifier<Receipt?> {
   Notifier(Receipt? state) : super(state);
-  update(Receipt state) {
+  update(Receipt? state) {
     this.state = state;
   }
 }

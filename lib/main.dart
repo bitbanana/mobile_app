@@ -4,7 +4,7 @@ import 'package:mobile_app/router/router.dart';
 
 void main() {
   final widget = router.widget();
-  final app = MaterialApp(home: widget);
+  final app = MaterialApp(home: widget, debugShowCheckedModeBanner: false);
   final scope = ProviderScope(child: app);
   runApp(scope);
 }
