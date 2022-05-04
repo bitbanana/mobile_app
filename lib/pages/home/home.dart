@@ -82,7 +82,7 @@ class Home extends HookConsumerWidget {
     final _wallet = ref.read(wallet);
     const encoder = JsonEncoder.withIndent('  ');
     String fileContent = encoder.convert(_wallet);
-    AnchorElement(href: 'data:text/plain;charset=utf-8,$fileContent')
+    AnchorElement(href: 'data:application/json;charset=utf-8,$fileContent')
       ..setAttribute('download', 'bitbanana_wallet.json')
       ..click();
   }
