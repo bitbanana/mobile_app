@@ -5,8 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/components/digital_counter.dart';
+import 'package:mobile_app/features/fetch_balance.dart';
 import 'package:mobile_app/pages/home/wallet_card.dart';
 import 'package:mobile_app/state/wallet.dart';
+import 'package:mobile_app/types/buy_order.dart';
+import 'package:mobile_app/types/sell_order.dart';
+import 'package:mobile_app/web_api/buy_fruits.dart';
+import 'package:mobile_app/web_api/see_fruits.dart';
+import 'package:mobile_app/web_api/see_pockets.dart';
+import 'package:mobile_app/web_api/sell_fruits.dart';
+import 'package:mobile_app/web_api/start_bonus.dart';
 
 /// アプリ
 class Home extends HookConsumerWidget {
@@ -15,6 +23,9 @@ class Home extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _wallet = ref.read(wallet);
+    if (_wallet == null) {
+      return const Text('Walletが見つかりません');
+    }
 
     /// ダウンロードボタン
     final downloadButton = ElevatedButton(
@@ -22,18 +33,10 @@ class Home extends HookConsumerWidget {
       child: const Text('download'),
     );
 
-    final column = Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        downloadButton,
-        Text(_wallet!.nickname),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            DigitalCounter(_wallet.balance_memo),
-          ],
-        ),
-      ],
+    /// Debugボタン
+    final debugButton = ElevatedButton(
+      onPressed: () => debug(ref),
+      child: const Text('debug'),
     );
 
     final screenSize = MediaQuery.of(context).size;
@@ -51,20 +54,53 @@ class Home extends HookConsumerWidget {
 
     final center = Center(child: wCard);
 
+    final column = Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        downloadButton,
+        debugButton,
+        center,
+      ],
+    );
+
     /// 画面
     return Scaffold(
       appBar: BlueAppBar(title: 'Bit Banana (ビットバナナ) β版'),
       backgroundColor: Colors.grey[200],
-      body: center,
+      body: column,
     );
   }
 
   download(WidgetRef ref) {
     final _wallet = ref.read(wallet);
-    JsonEncoder encoder = new JsonEncoder.withIndent('  ');
+    const encoder = JsonEncoder.withIndent('  ');
     String fileContent = encoder.convert(_wallet);
     AnchorElement(href: 'data:text/plain;charset=utf-8,$fileContent')
       ..setAttribute('download', 'bitbanana_wallet.json')
       ..click();
+  }
+
+  debug(WidgetRef ref) async {
+    // 1
+    // await fetchBalance(ref);
+    // 2
+    // final _wallet = ref.read(wallet)!;
+    // final req = StartBonusReq(addr: _wallet.addr);
+    // final res = await req.send();
+    // 3
+    // final req = SeeFruitsReq();
+    // final res = await req.send();
+    // 4
+    // final _wallet = ref.read(wallet)!;
+    // final req = SeePocketsReq(addr: _wallet.addr);
+    // final res = await req.send();
+    // 5
+    // final order = BuyOrder(addr: "MyAddr", fruit_id: 0, count: 5);
+    // final req = BuyFruitsReq(order: order);
+    // final res = await req.send();
+    // 6
+    final order = SellOrder(addr: "MyAddr", fruit_id: 0, count: 5);
+    final req = SellFruitsReq(order: order);
+    final res = await req.send();
   }
 }

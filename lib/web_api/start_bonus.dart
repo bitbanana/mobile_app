@@ -1,13 +1,36 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class StartBonusReq {
   String addr;
-  String pub_jwk;
-  StartBonusReq({required this.addr, required this.pub_jwk});
-  StartBonusRes send() {
-    return StartBonusRes(new_balance: 7777);
+  StartBonusReq({required this.addr});
+  Future<StartBonusRes> send() async {
+    var urlString = 'http://localhost:8000/start-bonus';
+    var url = Uri.parse(urlString);
+    final encoding = Encoding.getByName('utf-8');
+    final body = jsonEncode({"addr": addr});
+    final response = await http.post(
+      url,
+      body: body,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      encoding: encoding,
+    );
+    if (response.statusCode == 200) {
+      // utf8で受け取る
+      final rawString = utf8.decode(response.bodyBytes);
+      dynamic rawJson = jsonDecode(rawString);
+      return StartBonusRes(
+        new_balance: rawJson["new_balance"],
+      );
+    } else {
+      throw ("error");
+    }
   }
 }
 
 class StartBonusRes {
-  int new_balance;
+  final int new_balance;
   StartBonusRes({required this.new_balance});
 }

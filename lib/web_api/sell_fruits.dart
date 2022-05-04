@@ -1,10 +1,27 @@
 import 'package:mobile_app/types/sell_order.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class SellFruitsReq {
   SellOrder order;
   SellFruitsReq({required this.order});
-  SellFruitsRes send() {
-    return SellFruitsRes();
+  Future<SellFruitsRes> send() async {
+    var urlString = 'http://localhost:8000/sell-fruits';
+    var url = Uri.parse(urlString);
+    final encoding = Encoding.getByName('utf-8');
+    final response = await http.post(
+      url,
+      body: jsonEncode(order),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      encoding: encoding,
+    );
+    if (response.statusCode == 200) {
+      return SellFruitsRes();
+    } else {
+      throw ("error");
+    }
   }
 }
 
