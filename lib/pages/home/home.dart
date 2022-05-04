@@ -22,7 +22,7 @@ class Home extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _wallet = ref.read(wallet);
+    final _wallet = ref.watch(wallet);
     if (_wallet == null) {
       return const Text('Walletが見つかりません');
     }
@@ -37,6 +37,12 @@ class Home extends HookConsumerWidget {
     final debugButton = ElevatedButton(
       onPressed: () => debug(ref),
       child: const Text('debug'),
+    );
+
+    /// 残高更新ボタン
+    final fetchBalanceButton = ElevatedButton(
+      onPressed: () => _fetchBalance(ref),
+      child: const Text('fetchBalance'),
     );
 
     final screenSize = MediaQuery.of(context).size;
@@ -59,6 +65,7 @@ class Home extends HookConsumerWidget {
       children: [
         downloadButton,
         debugButton,
+        fetchBalanceButton,
         center,
       ],
     );
@@ -84,9 +91,9 @@ class Home extends HookConsumerWidget {
     // 1
     // await fetchBalance(ref);
     // 2
-    // final _wallet = ref.read(wallet)!;
-    // final req = StartBonusReq(addr: _wallet.addr);
-    // final res = await req.send();
+    final _wallet = ref.read(wallet)!;
+    final req = StartBonusReq(addr: _wallet.addr);
+    final res = await req.send();
     // 3
     // final req = SeeFruitsReq();
     // final res = await req.send();
@@ -99,8 +106,12 @@ class Home extends HookConsumerWidget {
     // final req = BuyFruitsReq(order: order);
     // final res = await req.send();
     // 6
-    final order = SellOrder(addr: "MyAddr", fruit_id: 0, count: 5);
-    final req = SellFruitsReq(order: order);
-    final res = await req.send();
+    // final order = SellOrder(addr: "MyAddr", fruit_id: 0, count: 5);
+    // final req = SellFruitsReq(order: order);
+    // final res = await req.send();
+  }
+
+  _fetchBalance(WidgetRef ref) async {
+    await fetchBalance(ref);
   }
 }
