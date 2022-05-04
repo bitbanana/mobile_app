@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:mobile_app/config/url.dart';
 
 class BalanceInquiryReq {
   String addr;
   BalanceInquiryReq({required this.addr});
   Future<BalanceInquiryRes> send() async {
-    var urlString = 'http://localhost:8000/balance-inquiry';
+    var urlString = bitbananaBaseUrl + '/balance-inquiry';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final body = jsonEncode({"addr": addr});

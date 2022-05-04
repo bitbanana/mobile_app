@@ -1,3 +1,4 @@
+import 'package:mobile_app/config/url.dart';
 import 'package:mobile_app/types/sell_order.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -6,7 +7,7 @@ class SellFruitsReq {
   SellOrder order;
   SellFruitsReq({required this.order});
   Future<SellFruitsRes> send() async {
-    var urlString = 'http://localhost:8000/sell-fruits';
+    var urlString = bitbananaBaseUrl + '/sell-fruits';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final response = await http.post(

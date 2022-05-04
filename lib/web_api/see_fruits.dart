@@ -1,3 +1,4 @@
+import 'package:mobile_app/config/url.dart';
 import 'package:mobile_app/types/day_fruit.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -5,7 +6,7 @@ import 'package:http/http.dart' as http;
 class SeeFruitsReq {
   SeeFruitsReq();
   Future<SeeFruitsRes> send() async {
-    var urlString = 'http://localhost:8000/see-fruits';
+    var urlString = bitbananaBaseUrl + '/see-fruits';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final response = await http.post(

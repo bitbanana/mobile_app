@@ -1,3 +1,4 @@
+import 'package:mobile_app/config/url.dart';
 import 'package:mobile_app/types/fruit_pocket.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -6,7 +7,7 @@ class SeePocketsReq {
   String addr;
   SeePocketsReq({required this.addr});
   Future<SeePocketsRes> send() async {
-    var urlString = 'http://localhost:8000/see-pockets';
+    var urlString = bitbananaBaseUrl + '/see-pockets';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final body = jsonEncode({"addr": addr});
