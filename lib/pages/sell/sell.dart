@@ -3,13 +3,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/components/on_appear.dart';
 import 'package:mobile_app/config/fixed_fruits.dart';
+import 'package:mobile_app/config/param_keys.dart';
 import 'package:mobile_app/features/fetch_day_fruits.dart';
 import 'package:mobile_app/features/fetch_fruit_pockets.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/day_fruits.dart';
 import 'package:mobile_app/state/fruit_pockets.dart';
 import 'package:mobile_app/types/fruit_pocket.dart';
-import 'package:mobile_app/web_api/see_fruits.dart';
 
 /// アプリ
 class Sell extends HookConsumerWidget {
@@ -65,7 +65,7 @@ class Sell extends HookConsumerWidget {
         title:
             Text('${fix.image_url} ${p.count} (BNN: ${p.count * dayF.price})'),
         onTap: () {
-          router.push(PageId.sellGuide, params: {'fruit_id': '${p.fruit_id}'});
+          router.push(PageId.sellGuide, params: {FRUIT_ID: '${p.fruit_id}'});
         },
       ),
     );

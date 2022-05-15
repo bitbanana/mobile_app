@@ -12,21 +12,21 @@ import 'package:mobile_app/types/receipt.dart';
 
 /// アプリ
 class SellGuide extends HookConsumerWidget {
-  final String? fruit_id;
-  const SellGuide({required this.fruit_id, Key? key}) : super(key: key);
+  final String? fruitId;
+  const SellGuide({required this.fruitId, Key? key}) : super(key: key);
 
-  initRcpt(WidgetRef ref, int f_id) {
+  initRcpt(WidgetRef ref, int fId) {
     final fruits = ref.read(dayFruits)!;
     final pockets = ref.read(fruitPockets)!;
-    final f = fruits.firstWhere((e) => e.fruit_id == f_id);
-    final p = pockets.firstWhere((e) => e.fruit_id == f_id);
+    final f = fruits.firstWhere((e) => e.fruit_id == fId);
+    final p = pockets.firstWhere((e) => e.fruit_id == fId);
     final rcpt = Receipt(
-      outItemId: f_id,
-      outItemCount: p.count,
-      outCoinCount: 0,
-      inItemId: null,
-      inItemCount: 0,
-      inCoinCount: p.count * f.price,
+      outFruitId: fId,
+      outFruitCount: p.count,
+      outBananaCount: 0,
+      inFruitId: null,
+      inFruitCount: 0,
+      inBananaCount: p.count * f.price,
     );
     ref.read(receipt.notifier).update(rcpt);
   }
@@ -40,8 +40,8 @@ class SellGuide extends HookConsumerWidget {
       final onAppear = OnAppear(
         () {
           debugPrint('Sell Guide から レシート を初期化します');
-          if (fruit_id == null) return;
-          final fId = int.parse(fruit_id!);
+          if (fruitId == null) return;
+          final fId = int.parse(fruitId!);
           initRcpt(ref, fId);
         },
         child: const Text('画面を準備中...'),
@@ -65,7 +65,7 @@ class SellGuide extends HookConsumerWidget {
           router.push(PageId.itemDetail);
         },
       ),
-      ItemStepper(),
+      const ItemStepper(),
       button,
     ]);
     final center = Center(child: column);

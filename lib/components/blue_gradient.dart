@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class BlueGradient extends StatelessWidget {
   final Widget? child;
-  const BlueGradient({this.child});
+  const BlueGradient({Key? key, this.child}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -24,7 +24,7 @@ class History extends HookConsumerWidget {
     );
 
     final column = Column(children: [
-      Text('過去 20 件の取引記録が残ります'),
+      const Text('過去 20 件の取引記録が残ります'),
       Expanded(child: list),
     ]);
 
@@ -41,7 +41,7 @@ class History extends HookConsumerWidget {
       child: ListTile(
         leading: Icon(Icons.people),
         title: Text(
-          'OUT Item: ${rcpt.outItemId} OUT BNN ${rcpt.outCoinCount} IN Item ${rcpt.inItemId} IN BNN ${rcpt.inCoinCount}',
+          'OUT Item: ${rcpt.outFruitId} OUT BNN ${rcpt.outBananaCount} IN Item ${rcpt.inFruitId} IN BNN ${rcpt.inBananaCount}',
         ),
         onTap: () {
           ref.read(receipt.notifier).update(rcpt);

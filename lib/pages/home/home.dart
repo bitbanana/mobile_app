@@ -1,19 +1,13 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:convert';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
-import 'package:mobile_app/components/digital_counter.dart';
 import 'package:mobile_app/features/fetch_balance.dart';
 import 'package:mobile_app/pages/home/wallet_card.dart';
 import 'package:mobile_app/state/wallet.dart';
-import 'package:mobile_app/types/buy_order.dart';
-import 'package:mobile_app/types/sell_order.dart';
-import 'package:mobile_app/web_api/buy_fruits.dart';
-import 'package:mobile_app/web_api/see_fruits.dart';
-import 'package:mobile_app/web_api/see_pockets.dart';
-import 'package:mobile_app/web_api/sell_fruits.dart';
 import 'package:mobile_app/web_api/start_bonus.dart';
 
 /// アプリ

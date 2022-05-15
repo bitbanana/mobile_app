@@ -1,7 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/features/storage.dart';
 import 'package:mobile_app/state/wallet.dart';
-import 'package:mobile_app/utils/signing.dart';
 import 'package:mobile_app/web_api/balance_inquiry.dart';
 
 Future<void> fetchBalance(WidgetRef ref) async {

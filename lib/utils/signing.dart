@@ -6,7 +6,7 @@ import 'package:crypto/crypto.dart';
 String newJwk() {
   const algorithm = JsonWebAlgorithm.es256;
   final jwk = algorithm.generateRandomKey();
-  final json = jsonEncode(jwk.toJson());
+  final json = jsonEncode(jwk);
   return json;
 }
 
@@ -16,7 +16,7 @@ String pubJwk({required String jwk}) {
   final fullJwk = JsonWebKey.fromJson(json);
   final keyPair = fullJwk.cryptoKeyPair;
   final pubJwk = JsonWebKey.fromCryptoKeys(publicKey: keyPair.publicKey);
-  final pubJwkStr = jsonEncode(pubJwk.toJson());
+  final pubJwkStr = jsonEncode(pubJwk);
   return pubJwkStr;
 }
 

@@ -18,6 +18,8 @@ import 'package:mobile_app/pages/trade_confirm/trade_confirm.dart';
 import 'package:mobile_app/pages/trade_result/trade_result.dart';
 // Page Router
 import 'package:ui_router/ui_router.dart';
+// config
+import 'package:mobile_app/config/param_keys.dart';
 
 enum PageId {
   splash,
@@ -42,7 +44,7 @@ final router = UiRouter(
     ),
     UiPage(
       id: PageId.sellGuide,
-      build: (params) => SellGuide(fruit_id: params['fruit_id']),
+      build: (params) => SellGuide(fruitId: params[FRUIT_ID]),
     ),
     UiPage(
       id: PageId.sell,
@@ -54,7 +56,7 @@ final router = UiRouter(
     ),
     UiPage(
       id: PageId.buyGuide,
-      build: (params) => BuyGuide(fruit_id: params['fruit_id']),
+      build: (params) => BuyGuide(fruitId: params[FRUIT_ID]),
     ),
     UiPage(
       id: PageId.history,

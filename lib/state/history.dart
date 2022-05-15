@@ -14,12 +14,12 @@ final history = StateNotifierProvider<Notifier, List<Receipt>>((ref) {
   // 初期化
   return Notifier([
     const Receipt(
-      outItemId: 3,
-      outItemCount: 4,
-      outCoinCount: 0,
-      inItemId: null,
-      inItemCount: 0,
-      inCoinCount: 150,
+      outFruitId: 3,
+      outFruitCount: 4,
+      outBananaCount: 0,
+      inFruitId: null,
+      inFruitCount: 0,
+      inBananaCount: 150,
     ),
   ]);
 });

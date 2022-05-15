@@ -11,19 +11,19 @@ import 'package:mobile_app/types/receipt.dart';
 
 /// アプリ
 class BuyGuide extends HookConsumerWidget {
-  final String? fruit_id;
-  const BuyGuide({required this.fruit_id, Key? key}) : super(key: key);
+  final String? fruitId;
+  const BuyGuide({required this.fruitId, Key? key}) : super(key: key);
 
-  initRcpt(WidgetRef ref, int f_id) {
+  initRcpt(WidgetRef ref, int fId) {
     final fruits = ref.read(dayFruits)!;
-    final f = fruits.firstWhere((e) => e.fruit_id == f_id);
+    final f = fruits.firstWhere((e) => e.fruit_id == fId);
     final rcpt = Receipt(
-      outItemId: null,
-      outItemCount: 0,
-      outCoinCount: f.price,
-      inItemId: f_id,
-      inItemCount: 1,
-      inCoinCount: 0,
+      outFruitId: null,
+      outFruitCount: 0,
+      outBananaCount: f.price,
+      inFruitId: fId,
+      inFruitCount: 1,
+      inBananaCount: 0,
     );
     ref.read(receipt.notifier).update(rcpt);
   }
@@ -37,8 +37,8 @@ class BuyGuide extends HookConsumerWidget {
       final onAppear = OnAppear(
         () {
           debugPrint('Buy Guide から レシート を初期化します');
-          if (fruit_id == null) return;
-          final fId = int.parse(fruit_id!);
+          if (fruitId == null) return;
+          final fId = int.parse(fruitId!);
           initRcpt(ref, fId);
         },
         child: const Text('画面を準備中...'),
@@ -63,9 +63,9 @@ class BuyGuide extends HookConsumerWidget {
           router.push(PageId.itemDetail);
         },
       ),
-      ItemStepper(),
+      const ItemStepper(),
       button,
-      Text('受け取った Item ID: $fruit_id'),
+      Text('受け取った Item ID: $fruitId'),
     ]);
     final center = Center(child: column);
 

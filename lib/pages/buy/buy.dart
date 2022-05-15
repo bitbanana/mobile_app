@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/components/on_appear.dart';
 import 'package:mobile_app/config/fixed_fruits.dart';
+import 'package:mobile_app/config/param_keys.dart';
 import 'package:mobile_app/features/fetch_day_fruits.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/day_fruits.dart';
@@ -53,7 +54,7 @@ class Buy extends HookConsumerWidget {
         leading: Icon(Icons.people),
         title: Text('${fix.image_url} ${fix.nickname} (BNN: ${f.price})'),
         onTap: () {
-          router.push(PageId.buyGuide, params: {'fruit_id': '${f.fruit_id}'});
+          router.push(PageId.buyGuide, params: {FRUIT_ID: '${f.fruit_id}'});
         },
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile_app/components/blue_gradient.dart';
 import 'package:mobile_app/components/digital_counter.dart';
 import 'package:mobile_app/types/bitbanana_wallet.dart';

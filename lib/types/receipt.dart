@@ -1,17 +1,17 @@
 class Receipt {
-  final int? outItemId;
-  final int outItemCount;
-  final int outCoinCount;
-  final int? inItemId;
-  final int inItemCount;
-  final int inCoinCount;
+  final int? outFruitId;
+  final int outFruitCount;
+  final int outBananaCount;
+  final int? inFruitId;
+  final int inFruitCount;
+  final int inBananaCount;
 
   const Receipt({
-    required this.outItemId,
-    required this.outItemCount,
-    required this.outCoinCount,
-    required this.inItemId,
-    required this.inItemCount,
-    required this.inCoinCount,
+    required this.outFruitId,
+    required this.outFruitCount,
+    required this.outBananaCount,
+    required this.inFruitId,
+    required this.inFruitCount,
+    required this.inBananaCount,
   });
 }

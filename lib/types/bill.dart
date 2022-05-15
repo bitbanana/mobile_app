@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mobile_app/types/buy_order.dart';
 part 'bill.freezed.dart';

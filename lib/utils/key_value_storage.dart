@@ -18,7 +18,7 @@ void saveInt(String key, int value) async {
 
 Future<int?> loadInt(String key) async {
   final prefs = await getPrefs();
-  prefs.getInt(key);
+  return prefs.getInt(key);
 }
 
 // String

@@ -3,11 +3,11 @@ import 'package:intl/intl.dart';
 
 class DigitalCounter extends StatelessWidget {
   final int count;
-  DigitalCounter(this.count);
+  const DigitalCounter(this.count, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final icon = Container(
+    final icon = SizedBox(
       width: 36,
       height: 36,
       child: Image.asset('images/bitbanana-icon.png'),

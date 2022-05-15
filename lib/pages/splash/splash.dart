@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/features/init_wallet.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:file_picker/src/file_picker.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:mobile_app/types/bitbanana_wallet.dart';
 
 /// アプリ

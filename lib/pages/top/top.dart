@@ -20,7 +20,7 @@ class Top extends ConsumerWidget {
           return true;
         });
       },
-      child: tabRouter.widget(), //選択中のタブ
+      child: tabRouter.widget(enableMaterialYou: true), //選択中のタブ
     );
   }
 }
