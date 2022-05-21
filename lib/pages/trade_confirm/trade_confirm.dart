@@ -3,6 +3,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/receipt.dart';
+import 'package:mobile_app/state/wallet.dart';
+import 'package:mobile_app/types/buy_order.dart';
+import 'package:mobile_app/types/receipt.dart';
+import 'package:mobile_app/types/sell_order.dart';
+import 'package:mobile_app/types/sender_sig_content.dart';
+import 'package:mobile_app/types/tx.dart';
+import 'package:mobile_app/types/tx_page.dart';
+import 'package:mobile_app/web_api/add_white_tx_bitfruit.dart';
+import 'package:mobile_app/web_api/buy_fruits.dart';
+import 'package:mobile_app/web_api/sell_fruits.dart';
+import 'package:uuid/uuid.dart';
 
 /// アプリ
 class TradeConfirm extends HookConsumerWidget {
@@ -11,6 +22,7 @@ class TradeConfirm extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rcpt = ref.read(receipt);
+    final _wallet = ref.read(wallet);
     if (rcpt == null) {
       return const Text('表示する取引レシートがありません');
     }
@@ -19,9 +31,7 @@ class TradeConfirm extends HookConsumerWidget {
     final appBar = BlueAppBar(title: 'Trade Confirm (取引確認)', canBack: true);
 
     final button = ElevatedButton(
-      onPressed: () {
-        router.push(PageId.tradeResult);
-      },
+      onPressed: () => onPressConfirm(rcpt, _wallet!.addr),
       child: const Text('Buy'),
     );
 
@@ -47,5 +57,49 @@ class TradeConfirm extends HookConsumerWidget {
       appBar: appBar,
       body: center,
     );
+  }
+}
+
+onPressConfirm(Receipt rcpt, String myAddr) async {
+  // 購入の場合
+  if (rcpt.inFruitCount > 0) {
+    final order = BuyOrder(
+      addr: myAddr,
+      fruit_id: rcpt.inFruitId!,
+      count: rcpt.inFruitCount,
+    );
+    final req = BuyFruitsReq(order: order);
+    print('購入リクエストを送ります');
+    final res = await req.send();
+    print(res.bill);
+    // 請求書を受け取ったので、支払いを行う
+    // FIXME: - 自分の要求したものかどうか確認
+    final cont = SenderSigContent(
+      addr: myAddr,
+      tx_id: res.bill.tx_id,
+      tx_page: 1,
+      tx_all_pages: 1,
+      r_addr: res.bill.r_addr,
+      amount: res.bill.amount,
+      fee: 0,
+    );
+    final txPage = TxPage(cont: cont, s_sig: "適当な署名");
+    final tx = Tx(s_addr: myAddr, pages: [txPage]);
+    final addTxReq = AddWhiteTxBitFruitReq(tx: tx);
+    print('支払いリクエストを送ります');
+    final addTxRes = await addTxReq.send();
+    router.push(PageId.tradeResult);
+  }
+  // 売却の場合
+  if (rcpt.outFruitCount > 0) {
+    final order = SellOrder(
+      addr: myAddr,
+      fruit_id: rcpt.outFruitId!,
+      count: rcpt.outFruitCount,
+    );
+    final req = SellFruitsReq(order: order);
+    final res = await req.send();
+    print(res);
+    router.push(PageId.tradeResult);
   }
 }

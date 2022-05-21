@@ -8,6 +8,8 @@ import 'package:mobile_app/features/fetch_day_fruits.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/day_fruits.dart';
 import 'package:mobile_app/types/day_fruit.dart';
+import 'package:collection/collection.dart';
+import 'package:mobile_app/types/fixed_fruit.dart';
 
 /// アプリ
 class Buy extends HookConsumerWidget {
@@ -48,11 +50,17 @@ class Buy extends HookConsumerWidget {
 
   /// リストアイテム
   Widget buildItem(DayFruit f, WidgetRef ref) {
-    final fix = fixedFruits.firstWhere((e) => e.fruit_id == f.fruit_id);
+    var fix = fixedFruits.firstWhereOrNull((e) => e.fruit_id == f.fruit_id);
+    fix ??= FixedFruit(
+      fruit_id: f.fruit_id,
+      nickname: '不明なフルーツ',
+      image_url: '',
+    );
+
     return Card(
       child: ListTile(
         leading: Icon(Icons.people),
-        title: Text('${fix.image_url} ${fix.nickname} (BNN: ${f.price})'),
+        title: Text('${fix.image_url} ${fix.nickname} (\$: ${f.price})'),
         onTap: () {
           router.push(PageId.buyGuide, params: {FRUIT_ID: '${f.fruit_id}'});
         },

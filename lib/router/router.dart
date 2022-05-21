@@ -4,9 +4,11 @@
 
 // Flutter
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 // Page
 import 'package:mobile_app/pages/buy/buy.dart';
 import 'package:mobile_app/pages/buy_guide/buy_guide.dart';
+import 'package:mobile_app/pages/create_wallet/create_wallet.dart';
 import 'package:mobile_app/pages/history/history.dart';
 import 'package:mobile_app/pages/home/home.dart';
 import 'package:mobile_app/pages/item_detail/item_detail.dart';
@@ -23,6 +25,7 @@ import 'package:mobile_app/config/param_keys.dart';
 
 enum PageId {
   splash,
+  createWallet,
   top,
   home,
   sell,
@@ -39,8 +42,16 @@ final router = UiRouter(
   initialPageId: PageId.splash,
   pages: [
     UiPage(
+      id: PageId.splash,
+      build: (params) => const Splash(),
+    ),
+    UiPage(
       id: PageId.top,
       build: (params) => const Top(),
+    ),
+    UiPage(
+      id: PageId.createWallet,
+      build: (params) => const CreateWallet(),
     ),
     UiPage(
       id: PageId.sellGuide,
@@ -73,10 +84,6 @@ final router = UiRouter(
     UiPage(
       id: PageId.tradeResult,
       build: (params) => const TradeResult(),
-    ),
-    UiPage(
-      id: PageId.splash,
-      build: (params) => const Splash(),
     ),
     UiPage(
       id: PageId.itemDetail,

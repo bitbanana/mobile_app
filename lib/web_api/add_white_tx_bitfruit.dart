@@ -1,40 +1,40 @@
 import 'package:mobile_app/config/url.dart';
 import 'package:mobile_app/types/bill.dart';
-import 'package:mobile_app/types/buy_order.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:mobile_app/types/tx.dart';
 
-class BuyFruitsReq {
-  BuyOrder order;
-  BuyFruitsReq({required this.order});
-  Future<BuyFruitsRes> send() async {
-    var urlString = bitbananaBaseUrl + '/buy-fruits';
+class AddWhiteTxBitFruitReq {
+  Tx tx;
+  AddWhiteTxBitFruitReq({required this.tx});
+  Future<AddWhiteTxBitFruitRes> send() async {
+    var urlString = bitbananaBaseUrl + '/add-white-tx-bitfruit';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
+
+    print("支払いリクエストを確認します");
     final response = await http.post(
       url,
-      body: jsonEncode(order),
+      body: jsonEncode(tx),
       headers: {
         "Content-Type": "application/json",
       },
       encoding: encoding,
     );
+
+    print("支払いレスポンスを確認します");
     if (response.statusCode == 200) {
       // utf8で受け取る
       final rawString = utf8.decode(response.bodyBytes);
       dynamic rawJson = jsonDecode(rawString);
-      dynamic billJson = rawJson['bill'];
-      final bill = Bill.fromJson(billJson);
-      return BuyFruitsRes(
-        bill: bill,
-      );
+      print(rawJson);
+      return AddWhiteTxBitFruitRes();
     } else {
       throw ("error");
     }
   }
 }
 
-class BuyFruitsRes {
-  Bill bill;
-  BuyFruitsRes({required this.bill});
+class AddWhiteTxBitFruitRes {
+  AddWhiteTxBitFruitRes();
 }
