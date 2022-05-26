@@ -21,11 +21,9 @@ BitbananaWallet _$BitbananaWalletFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BitbananaWallet {
   String get addr => throw _privateConstructorUsedError;
-  String get jwk =>
-      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
+  String get jwk => throw _privateConstructorUsedError;
   int get balance_memo => throw _privateConstructorUsedError;
-  String get nickname =>
-      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
+  String get nickname => throw _privateConstructorUsedError;
   String get created_at => throw _privateConstructorUsedError;
   String get version => throw _privateConstructorUsedError;
 
@@ -179,12 +177,10 @@ class _$_BitbananaWallet implements _BitbananaWallet {
   final String addr;
   @override
   final String jwk;
-// ignore: non_constant_identifier_names
   @override
   final int balance_memo;
   @override
   final String nickname;
-// ignore: non_constant_identifier_names
   @override
   final String created_at;
   @override
@@ -248,11 +244,11 @@ abstract class _BitbananaWallet implements BitbananaWallet {
   String get addr => throw _privateConstructorUsedError;
   @override
   String get jwk => throw _privateConstructorUsedError;
-  @override // ignore: non_constant_identifier_names
+  @override
   int get balance_memo => throw _privateConstructorUsedError;
   @override
   String get nickname => throw _privateConstructorUsedError;
-  @override // ignore: non_constant_identifier_names
+  @override
   String get created_at => throw _privateConstructorUsedError;
   @override
   String get version => throw _privateConstructorUsedError;

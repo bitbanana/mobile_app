@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-class FixedFruit {
+class BitfruitConfig {
   // ID
   int fruit_id;
   // 名称
@@ -8,7 +8,7 @@ class FixedFruit {
   // 画像URL
   String image_url;
 
-  FixedFruit({
+  BitfruitConfig({
     required this.fruit_id,
     required this.nickname,
     required this.image_url,

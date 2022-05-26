@@ -4,8 +4,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/features/fetch_day_fruits.dart';
-import 'package:mobile_app/features/fetch_fruit_pockets.dart';
+import 'package:mobile_app/features/fetch_fruits.dart';
+import 'package:mobile_app/features/fetch_pockets.dart';
 import 'package:mobile_app/features/storage.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/wallet.dart';
@@ -22,8 +22,8 @@ initContents({
     task: () async {
       ref.read(wallet.notifier).update(myWallet); // Walletをメモリ上に保存
       Storage().saveWallet(myWallet); //  Walletをストレージに保存
-      await fetchDayFruits(ref); // 現在のフルーツ価格を取得
-      await fetchFruitPockets(ref); // ユーザーが所持するフルーツを取得
+      await fetchFruits(ref); // 現在のフルーツ価格を取得
+      await fetchPockets(ref); // ユーザーが所持するフルーツを取得
     },
   );
   debugPrint('データ読み込みを完了しました');

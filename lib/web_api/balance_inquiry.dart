@@ -6,7 +6,7 @@ class BalanceInquiryReq {
   String addr;
   BalanceInquiryReq({required this.addr});
   Future<BalanceInquiryRes> send() async {
-    var urlString = bitbananaBaseUrl + '/balance-inquiry';
+    var urlString = bitbananaUrl + '/balance-inquiry';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final body = jsonEncode({"addr": addr});

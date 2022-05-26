@@ -1,1 +1,1 @@
-const bitbananaBaseUrl = "https://bitbanana.deno.dev";
+const bitbananaUrl = "https://bitbanana.deno.dev";

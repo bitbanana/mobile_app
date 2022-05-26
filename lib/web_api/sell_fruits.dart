@@ -7,7 +7,7 @@ class SellFruitsReq {
   SellOrder order;
   SellFruitsReq({required this.order});
   Future<SellFruitsRes> send() async {
-    var urlString = bitbananaBaseUrl + '/sell-fruits';
+    var urlString = bitbananaUrl + '/sell-fruits';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final response = await http.post(

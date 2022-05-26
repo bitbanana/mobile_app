@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/components/on_appear.dart';
-import 'package:mobile_app/config/fixed_fruits.dart';
+import 'package:mobile_app/config/fruit_configs.dart';
 import 'package:mobile_app/config/param_keys.dart';
-import 'package:mobile_app/features/fetch_day_fruits.dart';
+import 'package:mobile_app/features/fetch_fruits.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/day_fruits.dart';
-import 'package:mobile_app/types/day_fruit.dart';
+import 'package:mobile_app/state/bitfruits.dart';
+import 'package:mobile_app/types/bitfruit.dart';
 import 'package:collection/collection.dart';
-import 'package:mobile_app/types/fixed_fruit.dart';
+import 'package:mobile_app/types/bitfruit_config.dart';
 
 /// アプリ
 class Buy extends HookConsumerWidget {
@@ -17,14 +17,14 @@ class Buy extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final fruits = ref.watch(dayFruits);
+    final fruits = ref.watch(bitfruits);
 
     if (fruits == null) {
       /// 表示されたとき
       final onAppear = OnAppear(
         () {
           debugPrint('Buy からデータをフェッチします');
-          fetchDayFruits(ref);
+          fetchFruits(ref);
         },
         child: const Text('画面準備中...'),
       );
@@ -49,9 +49,9 @@ class Buy extends HookConsumerWidget {
   }
 
   /// リストアイテム
-  Widget buildItem(DayFruit f, WidgetRef ref) {
-    var fix = fixedFruits.firstWhereOrNull((e) => e.fruit_id == f.fruit_id);
-    fix ??= FixedFruit(
+  Widget buildItem(Bitfruit f, WidgetRef ref) {
+    var fix = fruitConfigs.firstWhereOrNull((e) => e.fruit_id == f.fruit_id);
+    fix ??= BitfruitConfig(
       fruit_id: f.fruit_id,
       nickname: '不明なフルーツ',
       image_url: '',

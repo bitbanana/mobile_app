@@ -1,12 +1,12 @@
 import 'package:mobile_app/config/url.dart';
-import 'package:mobile_app/types/day_fruit.dart';
+import 'package:mobile_app/types/bitfruit.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class SeeFruitsReq {
   SeeFruitsReq();
   Future<SeeFruitsRes> send() async {
-    var urlString = bitbananaBaseUrl + '/see-fruits';
+    var urlString = bitbananaUrl + '/see-fruits';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final response = await http.post(
@@ -23,11 +23,11 @@ class SeeFruitsReq {
       dynamic rawJson = jsonDecode(rawString);
       List<dynamic> list = rawJson['fruits'];
 
-      List<DayFruit> fruits = list.map((e) {
+      List<Bitfruit> fruits = list.map((e) {
         // 1度エンコードしてからMapへデコード
         final j = json.encode(e);
         Map<String, dynamic> map = json.decode(j);
-        return DayFruit.fromJson(map);
+        return Bitfruit.fromJson(map);
       }).toList();
       return SeeFruitsRes(
         fruits: fruits,
@@ -39,6 +39,6 @@ class SeeFruitsReq {
 }
 
 class SeeFruitsRes {
-  List<DayFruit> fruits;
+  List<Bitfruit> fruits;
   SeeFruitsRes({required this.fruits});
 }

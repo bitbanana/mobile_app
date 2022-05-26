@@ -1,5 +1,4 @@
 import 'package:mobile_app/config/url.dart';
-import 'package:mobile_app/types/bill.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobile_app/types/tx.dart';
@@ -8,7 +7,7 @@ class AddWhiteTxBitFruitReq {
   Tx tx;
   AddWhiteTxBitFruitReq({required this.tx});
   Future<AddWhiteTxBitFruitRes> send() async {
-    var urlString = bitbananaBaseUrl + '/add-white-tx-bitfruit';
+    var urlString = bitbananaUrl + '/add-white-tx-bitfruit';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
 

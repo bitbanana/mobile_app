@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/components/on_appear.dart';
-import 'package:mobile_app/config/fixed_fruits.dart';
+import 'package:mobile_app/config/fruit_configs.dart';
 import 'package:mobile_app/config/param_keys.dart';
-import 'package:mobile_app/features/fetch_day_fruits.dart';
-import 'package:mobile_app/features/fetch_fruit_pockets.dart';
+import 'package:mobile_app/features/fetch_fruits.dart';
+import 'package:mobile_app/features/fetch_pockets.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/day_fruits.dart';
+import 'package:mobile_app/state/bitfruits.dart';
 import 'package:mobile_app/state/fruit_pockets.dart';
 import 'package:mobile_app/types/fruit_pocket.dart';
 
@@ -17,7 +17,7 @@ class Sell extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final fruits = ref.watch(dayFruits);
+    final fruits = ref.watch(bitfruits);
     final pockets = ref.watch(fruitPockets);
 
     if (fruits == null || pockets == null) {
@@ -26,10 +26,10 @@ class Sell extends HookConsumerWidget {
         () {
           debugPrint('Sell からデータをフェッチします');
           if (fruits == null) {
-            fetchDayFruits(ref);
+            fetchFruits(ref);
           }
           if (pockets == null) {
-            fetchFruitPockets(ref);
+            fetchPockets(ref);
           }
         },
         child: const Text('画面準備中...'),
@@ -56,9 +56,9 @@ class Sell extends HookConsumerWidget {
 
   /// リストアイテム
   Widget buildItem(FruitPocket p, WidgetRef ref) {
-    final fix = fixedFruits.firstWhere((e) => e.fruit_id == p.fruit_id);
+    final fix = fruitConfigs.firstWhere((e) => e.fruit_id == p.fruit_id);
     final dayF =
-        ref.read(dayFruits)!.firstWhere((e) => e.fruit_id == p.fruit_id);
+        ref.read(bitfruits)!.firstWhere((e) => e.fruit_id == p.fruit_id);
     return Card(
       child: ListTile(
         leading: Icon(Icons.people),

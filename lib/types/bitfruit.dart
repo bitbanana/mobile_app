@@ -1,12 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'day_fruit.freezed.dart';
-part 'day_fruit.g.dart';
+part 'bitfruit.freezed.dart';
+part 'bitfruit.g.dart';
 
 @freezed
-class DayFruit with _$DayFruit {
-  const factory DayFruit({
+class Bitfruit with _$Bitfruit {
+  const factory Bitfruit({
     // ビットフルーツ ID
     required int fruit_id,
     // 日付
@@ -19,8 +19,8 @@ class DayFruit with _$DayFruit {
     required int price_ytd,
     // 現在の価格
     required int price,
-  }) = _DayFruit;
+  }) = _Bitfruit;
 
-  factory DayFruit.fromJson(Map<String, Object?> json) =>
-      _$DayFruitFromJson(json);
+  factory Bitfruit.fromJson(Map<String, Object?> json) =>
+      _$BitfruitFromJson(json);
 }

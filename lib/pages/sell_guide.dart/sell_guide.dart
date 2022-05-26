@@ -5,7 +5,7 @@ import 'package:mobile_app/components/item_header.dart';
 import 'package:mobile_app/components/item_stepper.dart';
 import 'package:mobile_app/components/on_appear.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/day_fruits.dart';
+import 'package:mobile_app/state/bitfruits.dart';
 import 'package:mobile_app/state/fruit_pockets.dart';
 import 'package:mobile_app/state/receipt.dart';
 import 'package:mobile_app/types/receipt.dart';
@@ -16,7 +16,7 @@ class SellGuide extends HookConsumerWidget {
   const SellGuide({required this.fruitId, Key? key}) : super(key: key);
 
   initRcpt(WidgetRef ref, int fId) {
-    final fruits = ref.read(dayFruits)!;
+    final fruits = ref.read(bitfruits)!;
     final pockets = ref.read(fruitPockets)!;
     final f = fruits.firstWhere((e) => e.fruit_id == fId);
     final p = pockets.firstWhere((e) => e.fruit_id == fId);

@@ -1,17 +1,17 @@
-import 'package:mobile_app/types/fixed_fruit.dart';
+import 'package:mobile_app/types/bitfruit_config.dart';
 
-final List<FixedFruit> fixedFruits = [
-  FixedFruit(
+final List<BitfruitConfig> fruitConfigs = [
+  BitfruitConfig(
     fruit_id: 0,
     nickname: 'メロン',
     image_url: 'assets://bitmelon.png',
   ),
-  FixedFruit(
+  BitfruitConfig(
     fruit_id: 1,
     nickname: 'グレープ',
     image_url: 'assets://bitgrape.png',
   ),
-  FixedFruit(
+  BitfruitConfig(
     fruit_id: 2,
     nickname: 'チェリー',
     image_url: 'assets://bitcherry.png',

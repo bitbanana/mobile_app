@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'day_fruit.dart';
+part of 'bitfruit.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DayFruit _$$_DayFruitFromJson(Map<String, dynamic> json) => _$_DayFruit(
+_$_Bitfruit _$$_BitfruitFromJson(Map<String, dynamic> json) => _$_Bitfruit(
       fruit_id: json['fruit_id'] as int,
       yyyymmdd: json['yyyymmdd'] as String,
       buy_count: json['buy_count'] as int,
@@ -15,7 +15,7 @@ _$_DayFruit _$$_DayFruitFromJson(Map<String, dynamic> json) => _$_DayFruit(
       price: json['price'] as int,
     );
 
-Map<String, dynamic> _$$_DayFruitToJson(_$_DayFruit instance) =>
+Map<String, dynamic> _$$_BitfruitToJson(_$_Bitfruit instance) =>
     <String, dynamic>{
       'fruit_id': instance.fruit_id,
       'yyyymmdd': instance.yyyymmdd,

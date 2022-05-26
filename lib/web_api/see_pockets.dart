@@ -7,7 +7,7 @@ class SeePocketsReq {
   String addr;
   SeePocketsReq({required this.addr});
   Future<SeePocketsRes> send() async {
-    var urlString = bitbananaBaseUrl + '/see-pockets';
+    var urlString = bitbananaUrl + '/see-pockets';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final body = jsonEncode({"addr": addr});
