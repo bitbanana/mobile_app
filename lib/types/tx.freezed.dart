@@ -21,7 +21,8 @@ Tx _$TxFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Tx {
   String get s_addr => throw _privateConstructorUsedError;
-  List<TxPage> get pages => throw _privateConstructorUsedError;
+  SenderSigContent get s_sig_cont => throw _privateConstructorUsedError;
+  String get s_sig => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +33,9 @@ mixin _$Tx {
 abstract class $TxCopyWith<$Res> {
   factory $TxCopyWith(Tx value, $Res Function(Tx) then) =
       _$TxCopyWithImpl<$Res>;
-  $Res call({String s_addr, List<TxPage> pages});
+  $Res call({String s_addr, SenderSigContent s_sig_cont, String s_sig});
+
+  $SenderSigContentCopyWith<$Res> get s_sig_cont;
 }
 
 /// @nodoc
@@ -46,18 +49,30 @@ class _$TxCopyWithImpl<$Res> implements $TxCopyWith<$Res> {
   @override
   $Res call({
     Object? s_addr = freezed,
-    Object? pages = freezed,
+    Object? s_sig_cont = freezed,
+    Object? s_sig = freezed,
   }) {
     return _then(_value.copyWith(
       s_addr: s_addr == freezed
           ? _value.s_addr
           : s_addr // ignore: cast_nullable_to_non_nullable
               as String,
-      pages: pages == freezed
-          ? _value.pages
-          : pages // ignore: cast_nullable_to_non_nullable
-              as List<TxPage>,
+      s_sig_cont: s_sig_cont == freezed
+          ? _value.s_sig_cont
+          : s_sig_cont // ignore: cast_nullable_to_non_nullable
+              as SenderSigContent,
+      s_sig: s_sig == freezed
+          ? _value.s_sig
+          : s_sig // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
+  }
+
+  @override
+  $SenderSigContentCopyWith<$Res> get s_sig_cont {
+    return $SenderSigContentCopyWith<$Res>(_value.s_sig_cont, (value) {
+      return _then(_value.copyWith(s_sig_cont: value));
+    });
   }
 }
 
@@ -66,7 +81,10 @@ abstract class _$TxCopyWith<$Res> implements $TxCopyWith<$Res> {
   factory _$TxCopyWith(_Tx value, $Res Function(_Tx) then) =
       __$TxCopyWithImpl<$Res>;
   @override
-  $Res call({String s_addr, List<TxPage> pages});
+  $Res call({String s_addr, SenderSigContent s_sig_cont, String s_sig});
+
+  @override
+  $SenderSigContentCopyWith<$Res> get s_sig_cont;
 }
 
 /// @nodoc
@@ -81,17 +99,22 @@ class __$TxCopyWithImpl<$Res> extends _$TxCopyWithImpl<$Res>
   @override
   $Res call({
     Object? s_addr = freezed,
-    Object? pages = freezed,
+    Object? s_sig_cont = freezed,
+    Object? s_sig = freezed,
   }) {
     return _then(_Tx(
       s_addr: s_addr == freezed
           ? _value.s_addr
           : s_addr // ignore: cast_nullable_to_non_nullable
               as String,
-      pages: pages == freezed
-          ? _value.pages
-          : pages // ignore: cast_nullable_to_non_nullable
-              as List<TxPage>,
+      s_sig_cont: s_sig_cont == freezed
+          ? _value.s_sig_cont
+          : s_sig_cont // ignore: cast_nullable_to_non_nullable
+              as SenderSigContent,
+      s_sig: s_sig == freezed
+          ? _value.s_sig
+          : s_sig // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -99,23 +122,21 @@ class __$TxCopyWithImpl<$Res> extends _$TxCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Tx implements _Tx {
-  const _$_Tx({required this.s_addr, required final List<TxPage> pages})
-      : _pages = pages;
+  const _$_Tx(
+      {required this.s_addr, required this.s_sig_cont, required this.s_sig});
 
   factory _$_Tx.fromJson(Map<String, dynamic> json) => _$$_TxFromJson(json);
 
   @override
   final String s_addr;
-  final List<TxPage> _pages;
   @override
-  List<TxPage> get pages {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pages);
-  }
+  final SenderSigContent s_sig_cont;
+  @override
+  final String s_sig;
 
   @override
   String toString() {
-    return 'Tx(s_addr: $s_addr, pages: $pages)';
+    return 'Tx(s_addr: $s_addr, s_sig_cont: $s_sig_cont, s_sig: $s_sig)';
   }
 
   @override
@@ -124,7 +145,9 @@ class _$_Tx implements _Tx {
         (other.runtimeType == runtimeType &&
             other is _Tx &&
             const DeepCollectionEquality().equals(other.s_addr, s_addr) &&
-            const DeepCollectionEquality().equals(other.pages, pages));
+            const DeepCollectionEquality()
+                .equals(other.s_sig_cont, s_sig_cont) &&
+            const DeepCollectionEquality().equals(other.s_sig, s_sig));
   }
 
   @JsonKey(ignore: true)
@@ -132,7 +155,8 @@ class _$_Tx implements _Tx {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(s_addr),
-      const DeepCollectionEquality().hash(pages));
+      const DeepCollectionEquality().hash(s_sig_cont),
+      const DeepCollectionEquality().hash(s_sig));
 
   @JsonKey(ignore: true)
   @override
@@ -147,14 +171,17 @@ class _$_Tx implements _Tx {
 abstract class _Tx implements Tx {
   const factory _Tx(
       {required final String s_addr,
-      required final List<TxPage> pages}) = _$_Tx;
+      required final SenderSigContent s_sig_cont,
+      required final String s_sig}) = _$_Tx;
 
   factory _Tx.fromJson(Map<String, dynamic> json) = _$_Tx.fromJson;
 
   @override
   String get s_addr => throw _privateConstructorUsedError;
   @override
-  List<TxPage> get pages => throw _privateConstructorUsedError;
+  SenderSigContent get s_sig_cont => throw _privateConstructorUsedError;
+  @override
+  String get s_sig => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TxCopyWith<_Tx> get copyWith => throw _privateConstructorUsedError;

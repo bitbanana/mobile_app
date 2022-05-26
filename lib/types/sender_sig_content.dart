@@ -7,10 +7,7 @@ part 'sender_sig_content.g.dart';
 @freezed
 class SenderSigContent with _$SenderSigContent {
   const factory SenderSigContent({
-    required String addr,
     required String tx_id,
-    required int tx_page,
-    required int tx_all_pages,
     required String r_addr,
     required int amount,
     required int fee,

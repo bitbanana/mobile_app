@@ -8,12 +8,13 @@ part of 'tx.dart';
 
 _$_Tx _$$_TxFromJson(Map<String, dynamic> json) => _$_Tx(
       s_addr: json['s_addr'] as String,
-      pages: (json['pages'] as List<dynamic>)
-          .map((e) => TxPage.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      s_sig_cont:
+          SenderSigContent.fromJson(json['s_sig_cont'] as Map<String, dynamic>),
+      s_sig: json['s_sig'] as String,
     );
 
 Map<String, dynamic> _$$_TxToJson(_$_Tx instance) => <String, dynamic>{
       's_addr': instance.s_addr,
-      'pages': instance.pages,
+      's_sig_cont': instance.s_sig_cont,
+      's_sig': instance.s_sig,
     };

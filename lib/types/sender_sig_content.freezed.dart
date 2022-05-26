@@ -20,10 +20,7 @@ SenderSigContent _$SenderSigContentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SenderSigContent {
-  String get addr => throw _privateConstructorUsedError;
   String get tx_id => throw _privateConstructorUsedError;
-  int get tx_page => throw _privateConstructorUsedError;
-  int get tx_all_pages => throw _privateConstructorUsedError;
   String get r_addr => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   int get fee => throw _privateConstructorUsedError;
@@ -39,14 +36,7 @@ abstract class $SenderSigContentCopyWith<$Res> {
   factory $SenderSigContentCopyWith(
           SenderSigContent value, $Res Function(SenderSigContent) then) =
       _$SenderSigContentCopyWithImpl<$Res>;
-  $Res call(
-      {String addr,
-      String tx_id,
-      int tx_page,
-      int tx_all_pages,
-      String r_addr,
-      int amount,
-      int fee});
+  $Res call({String tx_id, String r_addr, int amount, int fee});
 }
 
 /// @nodoc
@@ -60,31 +50,16 @@ class _$SenderSigContentCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? addr = freezed,
     Object? tx_id = freezed,
-    Object? tx_page = freezed,
-    Object? tx_all_pages = freezed,
     Object? r_addr = freezed,
     Object? amount = freezed,
     Object? fee = freezed,
   }) {
     return _then(_value.copyWith(
-      addr: addr == freezed
-          ? _value.addr
-          : addr // ignore: cast_nullable_to_non_nullable
-              as String,
       tx_id: tx_id == freezed
           ? _value.tx_id
           : tx_id // ignore: cast_nullable_to_non_nullable
               as String,
-      tx_page: tx_page == freezed
-          ? _value.tx_page
-          : tx_page // ignore: cast_nullable_to_non_nullable
-              as int,
-      tx_all_pages: tx_all_pages == freezed
-          ? _value.tx_all_pages
-          : tx_all_pages // ignore: cast_nullable_to_non_nullable
-              as int,
       r_addr: r_addr == freezed
           ? _value.r_addr
           : r_addr // ignore: cast_nullable_to_non_nullable
@@ -108,14 +83,7 @@ abstract class _$SenderSigContentCopyWith<$Res>
           _SenderSigContent value, $Res Function(_SenderSigContent) then) =
       __$SenderSigContentCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String addr,
-      String tx_id,
-      int tx_page,
-      int tx_all_pages,
-      String r_addr,
-      int amount,
-      int fee});
+  $Res call({String tx_id, String r_addr, int amount, int fee});
 }
 
 /// @nodoc
@@ -131,31 +99,16 @@ class __$SenderSigContentCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? addr = freezed,
     Object? tx_id = freezed,
-    Object? tx_page = freezed,
-    Object? tx_all_pages = freezed,
     Object? r_addr = freezed,
     Object? amount = freezed,
     Object? fee = freezed,
   }) {
     return _then(_SenderSigContent(
-      addr: addr == freezed
-          ? _value.addr
-          : addr // ignore: cast_nullable_to_non_nullable
-              as String,
       tx_id: tx_id == freezed
           ? _value.tx_id
           : tx_id // ignore: cast_nullable_to_non_nullable
               as String,
-      tx_page: tx_page == freezed
-          ? _value.tx_page
-          : tx_page // ignore: cast_nullable_to_non_nullable
-              as int,
-      tx_all_pages: tx_all_pages == freezed
-          ? _value.tx_all_pages
-          : tx_all_pages // ignore: cast_nullable_to_non_nullable
-              as int,
       r_addr: r_addr == freezed
           ? _value.r_addr
           : r_addr // ignore: cast_nullable_to_non_nullable
@@ -176,10 +129,7 @@ class __$SenderSigContentCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SenderSigContent implements _SenderSigContent {
   const _$_SenderSigContent(
-      {required this.addr,
-      required this.tx_id,
-      required this.tx_page,
-      required this.tx_all_pages,
+      {required this.tx_id,
       required this.r_addr,
       required this.amount,
       required this.fee});
@@ -188,13 +138,7 @@ class _$_SenderSigContent implements _SenderSigContent {
       _$$_SenderSigContentFromJson(json);
 
   @override
-  final String addr;
-  @override
   final String tx_id;
-  @override
-  final int tx_page;
-  @override
-  final int tx_all_pages;
   @override
   final String r_addr;
   @override
@@ -204,7 +148,7 @@ class _$_SenderSigContent implements _SenderSigContent {
 
   @override
   String toString() {
-    return 'SenderSigContent(addr: $addr, tx_id: $tx_id, tx_page: $tx_page, tx_all_pages: $tx_all_pages, r_addr: $r_addr, amount: $amount, fee: $fee)';
+    return 'SenderSigContent(tx_id: $tx_id, r_addr: $r_addr, amount: $amount, fee: $fee)';
   }
 
   @override
@@ -212,11 +156,7 @@ class _$_SenderSigContent implements _SenderSigContent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SenderSigContent &&
-            const DeepCollectionEquality().equals(other.addr, addr) &&
             const DeepCollectionEquality().equals(other.tx_id, tx_id) &&
-            const DeepCollectionEquality().equals(other.tx_page, tx_page) &&
-            const DeepCollectionEquality()
-                .equals(other.tx_all_pages, tx_all_pages) &&
             const DeepCollectionEquality().equals(other.r_addr, r_addr) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.fee, fee));
@@ -226,10 +166,7 @@ class _$_SenderSigContent implements _SenderSigContent {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(addr),
       const DeepCollectionEquality().hash(tx_id),
-      const DeepCollectionEquality().hash(tx_page),
-      const DeepCollectionEquality().hash(tx_all_pages),
       const DeepCollectionEquality().hash(r_addr),
       const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(fee));
@@ -247,10 +184,7 @@ class _$_SenderSigContent implements _SenderSigContent {
 
 abstract class _SenderSigContent implements SenderSigContent {
   const factory _SenderSigContent(
-      {required final String addr,
-      required final String tx_id,
-      required final int tx_page,
-      required final int tx_all_pages,
+      {required final String tx_id,
       required final String r_addr,
       required final int amount,
       required final int fee}) = _$_SenderSigContent;
@@ -259,13 +193,7 @@ abstract class _SenderSigContent implements SenderSigContent {
       _$_SenderSigContent.fromJson;
 
   @override
-  String get addr => throw _privateConstructorUsedError;
-  @override
   String get tx_id => throw _privateConstructorUsedError;
-  @override
-  int get tx_page => throw _privateConstructorUsedError;
-  @override
-  int get tx_all_pages => throw _privateConstructorUsedError;
   @override
   String get r_addr => throw _privateConstructorUsedError;
   @override
