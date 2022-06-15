@@ -8,7 +8,13 @@ class Notifier extends StateNotifier<BitbananaWallet?> {
   update(BitbananaWallet state) {
     this.state = state;
     // ストレージへ保存
-    // Storage().saveWallet(state);
+    Storage().saveWallet(state);
+  }
+
+  delete() {
+    state = null;
+    // ストレージから削除
+    Storage().deleteWallet();
   }
 }
 

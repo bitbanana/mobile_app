@@ -8,6 +8,7 @@ import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/features/fetch_balance.dart';
 import 'package:mobile_app/pages/home/nickname_editor.dart';
 import 'package:mobile_app/pages/home/wallet_card.dart';
+import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/wallet.dart';
 import 'package:mobile_app/web_api/start_bonus.dart';
 
@@ -41,6 +42,12 @@ class Home extends HookConsumerWidget {
       child: const Text('fetchBalance'),
     );
 
+    /// データをリセットボタン
+    final resetDataButton = ElevatedButton(
+      onPressed: () => _resetData(ref),
+      child: const Text('resetData'),
+    );
+
     final screenSize = MediaQuery.of(context).size;
     final wCardSize = walletCardSize(screenW: screenSize.width);
 
@@ -62,6 +69,7 @@ class Home extends HookConsumerWidget {
         downloadButton,
         debugButton,
         fetchBalanceButton,
+        resetDataButton,
         center,
       ],
     );
@@ -113,5 +121,11 @@ class Home extends HookConsumerWidget {
 
   _fetchBalance(WidgetRef ref) async {
     await fetchBalance(ref);
+  }
+
+  _resetData(WidgetRef ref) {
+    print(router.stack());
+    router.popTo(PageId.splash);
+    ref.read(wallet.notifier).delete();
   }
 }

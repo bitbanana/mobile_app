@@ -11,6 +11,9 @@ import 'package:mobile_app/pages/create_wallet/create_wallet.dart';
 import 'package:mobile_app/pages/history/history.dart';
 import 'package:mobile_app/pages/home/home.dart';
 import 'package:mobile_app/pages/item_detail/item_detail.dart';
+import 'package:mobile_app/pages/onboading/about_bnn_key.dart';
+import 'package:mobile_app/pages/onboading/onboading.dart';
+import 'package:mobile_app/pages/onboading/welcome.dart';
 import 'package:mobile_app/pages/sell/sell.dart';
 import 'package:mobile_app/pages/sell_guide.dart/sell_guide.dart';
 import 'package:mobile_app/pages/splash/splash.dart';
@@ -24,6 +27,7 @@ import 'package:mobile_app/config/param_keys.dart';
 
 enum PageId {
   splash,
+  onboarding,
   createWallet,
   top,
   home,
@@ -43,6 +47,10 @@ final router = UiRouter(
     UiPage(
       id: PageId.splash,
       build: (params) => const Splash(),
+    ),
+    UiPage(
+      id: PageId.onboarding,
+      build: (params) => Onboarding(),
     ),
     UiPage(
       id: PageId.top,
@@ -89,6 +97,17 @@ final router = UiRouter(
       build: (params) => const ItemDetail(),
     ),
   ],
+);
+
+enum OnboardingPageId {
+  welcome,
+  aboutBnnKey,
+  receiveStartBonus,
+}
+
+final onboardingRouter = UiRouter(
+  initialPageId: OnboardingPageId.welcome,
+  pages: [], // 動的に生成
 );
 
 enum TabPageId {

@@ -20,4 +20,8 @@ class Storage {
     }
     return null;
   }
+
+  Future<void> deleteWallet() async {
+    await removeString(walletKey);
+  }
 }

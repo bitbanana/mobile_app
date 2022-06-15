@@ -51,12 +51,12 @@ class CreateWallet extends HookConsumerWidget {
   }
 
   // Newスタートボタンを押下
-  newStart(WidgetRef ref) {
+  newStart(WidgetRef ref) async {
     // 新規 Wallet を準備
     final w = createNewWallet();
-    initContents(ref: ref, myWallet: w);
+    await initContents(ref: ref, myWallet: w);
     // top画面へ遷移
-    router.push(PageId.top);
+    router.push(PageId.onboarding);
   }
 
   // インポートボタンを押下
@@ -69,7 +69,8 @@ class CreateWallet extends HookConsumerWidget {
       final file = result.files.single.bytes!;
       final text = const Utf8Decoder().convert(file);
       try {
-        final wallet = BitbananaWallet.fromJson(jsonDecode(text));
+        final json = jsonDecode(text);
+        final wallet = BitbananaWallet.fromJson(json);
         initContents(ref: ref, myWallet: wallet);
         // top画面へ遷移
         router.push(PageId.top);

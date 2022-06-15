@@ -32,6 +32,11 @@ Future<String?> loadString(String key) async {
   return prefs.getString(key);
 }
 
+Future<void> removeString(String key) async {
+  final prefs = await getPrefs();
+  await prefs.remove(key);
+}
+
 // String List
 void saveStringList(String key, List<String> values) async {
   final prefs = await getPrefs();

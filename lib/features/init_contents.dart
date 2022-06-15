@@ -12,7 +12,7 @@ import 'package:mobile_app/state/wallet.dart';
 import 'package:mobile_app/types/bitbanana_wallet.dart';
 
 /// データを読み込んで Wallet を使用可能な状態にする
-initContents({
+Future<void> initContents({
   required WidgetRef ref,
   required BitbananaWallet myWallet,
 }) async {
