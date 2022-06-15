@@ -88,7 +88,7 @@ onPressConfirm(Receipt rcpt, BitbananaWallet myWallet) async {
       s_sig_cont: cont,
       s_sig: sig,
     );
-    final addTxReq = AddWhiteTxBitFruitReq(tx: tx);
+    final addTxReq = AddWhiteTxBitfruitReq(tx: tx);
     print('支払いリクエストを送ります');
     final addTxRes = await addTxReq.send();
     router.push(PageId.tradeResult);

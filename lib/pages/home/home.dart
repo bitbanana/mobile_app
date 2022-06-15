@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/features/fetch_balance.dart';
-import 'package:mobile_app/pages/home/nickname_editor.dart';
+import 'package:mobile_app/pages/home/edit_nickname_dialog.dart';
 import 'package:mobile_app/pages/home/wallet_card.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/wallet.dart';
@@ -15,7 +15,6 @@ import 'package:mobile_app/web_api/start_bonus.dart';
 /// アプリ
 class Home extends HookConsumerWidget {
   Home({Key? key}) : super(key: key);
-  final nicknameEditor = NicknameEditor();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -81,7 +80,14 @@ class Home extends HookConsumerWidget {
       body: column,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.edit),
-        onPressed: () => nicknameEditor.editNickname(context, ref),
+        onPressed: () {
+          showDialog<void>(
+            context: context,
+            builder: (_) {
+              return EditNicknameDialog();
+            },
+          );
+        },
       ),
     );
   }

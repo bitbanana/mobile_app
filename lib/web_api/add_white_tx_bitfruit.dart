@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobile_app/types/tx.dart';
 
-class AddWhiteTxBitFruitReq {
+class AddWhiteTxBitfruitReq {
   Tx tx;
-  AddWhiteTxBitFruitReq({required this.tx});
-  Future<AddWhiteTxBitFruitRes> send() async {
+  AddWhiteTxBitfruitReq({required this.tx});
+  Future<AddWhiteTxBitfruitRes> send() async {
     var urlString = bitbananaUrl + '/add-white-tx-bitfruit';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
@@ -27,13 +27,13 @@ class AddWhiteTxBitFruitReq {
       final rawString = utf8.decode(response.bodyBytes);
       dynamic rawJson = jsonDecode(rawString);
       print(rawJson);
-      return AddWhiteTxBitFruitRes();
+      return AddWhiteTxBitfruitRes();
     } else {
       throw ("error");
     }
   }
 }
 
-class AddWhiteTxBitFruitRes {
-  AddWhiteTxBitFruitRes();
+class AddWhiteTxBitfruitRes {
+  AddWhiteTxBitfruitRes();
 }
