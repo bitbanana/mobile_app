@@ -7,6 +7,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/features/fetch_balance.dart';
 import 'package:mobile_app/pages/home/edit_nickname_dialog.dart';
+import 'package:mobile_app/pages/home/export_bnn_key_dialog.dart';
+import 'package:mobile_app/pages/home/reset_data_dialog.dart';
 import 'package:mobile_app/pages/home/wallet_card.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/wallet.dart';
@@ -23,10 +25,10 @@ class Home extends HookConsumerWidget {
       return const Text('Walletが見つかりません');
     }
 
-    /// ダウンロードボタン
-    final downloadButton = ElevatedButton(
-      onPressed: () => download(ref),
-      child: const Text('download'),
+    /// Exportボタン
+    final exportButton = ElevatedButton(
+      onPressed: () => _exportKey(context),
+      child: const Text('ビットバナナの鍵を保存'),
     );
 
     /// Debugボタン
@@ -43,7 +45,7 @@ class Home extends HookConsumerWidget {
 
     /// データをリセットボタン
     final resetDataButton = ElevatedButton(
-      onPressed: () => _resetData(ref),
+      onPressed: () => _resetData(context, ref),
       child: const Text('resetData'),
     );
 
@@ -65,7 +67,7 @@ class Home extends HookConsumerWidget {
     final column = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        downloadButton,
+        exportButton,
         debugButton,
         fetchBalanceButton,
         resetDataButton,
@@ -92,13 +94,11 @@ class Home extends HookConsumerWidget {
     );
   }
 
-  download(WidgetRef ref) {
-    final _wallet = ref.read(wallet);
-    const encoder = JsonEncoder.withIndent('  ');
-    String fileContent = encoder.convert(_wallet);
-    AnchorElement(href: 'data:application/json;charset=utf-8,$fileContent')
-      ..setAttribute('download', 'bitbanana_wallet.json')
-      ..click();
+  _exportKey(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => const ExportBnnKeyDialog(),
+    );
   }
 
   debug(WidgetRef ref) async {
@@ -129,9 +129,10 @@ class Home extends HookConsumerWidget {
     await fetchBalance(ref);
   }
 
-  _resetData(WidgetRef ref) {
-    print(router.stack());
-    router.popTo(PageId.splash);
-    ref.read(wallet.notifier).delete();
+  _resetData(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (_) => const ResetDataDialog(),
+    );
   }
 }

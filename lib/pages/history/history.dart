@@ -23,9 +23,10 @@ class History extends HookConsumerWidget {
       itemCount: rcpts.length,
     );
 
-    final column = Column(children: [
-      const Text('過去 20 件の取引記録が残ります'),
-      Expanded(child: list),
+    final column = Column(children: const [
+      Text('取引履歴を見る機能は現在開発中です。もうしばらくお待ちください。'),
+      // const Text('過去 20 件の取引記録が残ります'),
+      // Expanded(child: list),
     ]);
 
     /// 画面

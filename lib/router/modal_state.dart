@@ -18,8 +18,7 @@ class Notifier extends StateNotifier<ModalState> {
 }
 
 /// 公開
-final baseModalState =
-    StateNotifierProvider.autoDispose<Notifier, ModalState>((ref) {
+final baseModalState = StateNotifierProvider<Notifier, ModalState>((ref) {
   // 初期化
   const initialState = ModalState(
     queue: [],

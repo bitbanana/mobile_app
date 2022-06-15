@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/features/create_new_wallet.dart';
 import 'package:mobile_app/features/init_contents.dart';
+import 'package:mobile_app/pages/create_wallet/import_bnn_key_dialog.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:mobile_app/types/bitbanana_wallet.dart';
@@ -28,7 +29,7 @@ class CreateWallet extends HookConsumerWidget {
 
     // インポートボタン
     final importBtn = ElevatedButton(
-      onPressed: () => importWallet(ref),
+      onPressed: () => _importWallet(context),
       child: const Text('import'),
     );
 
@@ -60,25 +61,17 @@ class CreateWallet extends HookConsumerWidget {
   }
 
   // インポートボタンを押下
-  importWallet(WidgetRef ref) async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['json'],
-    );
-    if (result != null) {
-      final file = result.files.single.bytes!;
-      final text = const Utf8Decoder().convert(file);
-      try {
-        final json = jsonDecode(text);
-        final wallet = BitbananaWallet.fromJson(json);
-        initContents(ref: ref, myWallet: wallet);
+  _importWallet(BuildContext context) {
+    final dialog = ImportBnnKeyDialog(
+      didImport: () {
         // top画面へ遷移
         router.push(PageId.top);
-      } catch (err) {
-        debugPrint('読み込みに失敗しました');
-      }
-    } else {
-      // User canceled the picker
-    }
+      },
+    );
+    // ダイアログを表示
+    showDialog(
+      context: context,
+      builder: (_) => dialog,
+    );
   }
 }
