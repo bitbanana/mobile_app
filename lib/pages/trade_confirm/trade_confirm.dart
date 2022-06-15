@@ -1,18 +1,20 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/receipt.dart';
 import 'package:mobile_app/state/wallet.dart';
+import 'package:mobile_app/types/bitbanana_wallet.dart';
 import 'package:mobile_app/types/buy_order.dart';
 import 'package:mobile_app/types/receipt.dart';
 import 'package:mobile_app/types/sell_order.dart';
 import 'package:mobile_app/types/sender_sig_content.dart';
 import 'package:mobile_app/types/tx.dart';
+import 'package:mobile_app/utils/signing.dart';
 import 'package:mobile_app/web_api/add_white_tx_bitfruit.dart';
 import 'package:mobile_app/web_api/buy_fruits.dart';
 import 'package:mobile_app/web_api/sell_fruits.dart';
-import 'package:uuid/uuid.dart';
 
 /// アプリ
 class TradeConfirm extends HookConsumerWidget {
@@ -30,7 +32,7 @@ class TradeConfirm extends HookConsumerWidget {
     final appBar = BlueAppBar(title: 'Trade Confirm (取引確認)', canBack: true);
 
     final button = ElevatedButton(
-      onPressed: () => onPressConfirm(rcpt, _wallet!.addr),
+      onPressed: () => onPressConfirm(rcpt, _wallet!),
       child: const Text('Buy'),
     );
 
@@ -59,11 +61,11 @@ class TradeConfirm extends HookConsumerWidget {
   }
 }
 
-onPressConfirm(Receipt rcpt, String myAddr) async {
+onPressConfirm(Receipt rcpt, BitbananaWallet myWallet) async {
   // 購入の場合
   if (rcpt.inFruitCount > 0) {
     final order = BuyOrder(
-      addr: myAddr,
+      addr: myWallet.addr,
       fruit_id: rcpt.inFruitId!,
       count: rcpt.inFruitCount,
     );
@@ -79,10 +81,12 @@ onPressConfirm(Receipt rcpt, String myAddr) async {
       amount: res.bill.amount,
       fee: 0,
     );
+    final jsonCont = jsonEncode(cont);
+    final sig = sign(sigContent: jsonCont, jwk: myWallet.jwk);
     final tx = Tx(
-      s_addr: myAddr,
+      s_addr: myWallet.addr,
       s_sig_cont: cont,
-      s_sig: "アプリ適当な署名",
+      s_sig: sig,
     );
     final addTxReq = AddWhiteTxBitFruitReq(tx: tx);
     print('支払いリクエストを送ります');
@@ -92,7 +96,7 @@ onPressConfirm(Receipt rcpt, String myAddr) async {
   // 売却の場合
   if (rcpt.outFruitCount > 0) {
     final order = SellOrder(
-      addr: myAddr,
+      addr: myWallet.addr,
       fruit_id: rcpt.outFruitId!,
       count: rcpt.outFruitCount,
     );

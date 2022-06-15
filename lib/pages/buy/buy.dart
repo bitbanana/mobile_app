@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/components/on_appear.dart';
+import 'package:mobile_app/components/uri_image.dart';
 import 'package:mobile_app/config/fruit_configs.dart';
 import 'package:mobile_app/config/param_keys.dart';
 import 'package:mobile_app/features/fetch_fruits.dart';
@@ -54,13 +55,13 @@ class Buy extends HookConsumerWidget {
     fix ??= BitfruitConfig(
       fruit_id: f.fruit_id,
       nickname: '不明なフルーツ',
-      image_url: '',
+      image_uri: '',
     );
 
     return Card(
       child: ListTile(
-        leading: Icon(Icons.people),
-        title: Text('${fix.image_url} ${fix.nickname} (\$: ${f.price})'),
+        leading: UriImage(ImageUri(fix.image_uri)),
+        title: Text('${fix.nickname} (\$: ${f.price})'),
         onTap: () {
           router.push(PageId.buyGuide, params: {FRUIT_ID: '${f.fruit_id}'});
         },

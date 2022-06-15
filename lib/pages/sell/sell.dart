@@ -63,7 +63,7 @@ class Sell extends HookConsumerWidget {
       child: ListTile(
         leading: Icon(Icons.people),
         title:
-            Text('${fix.image_url} ${p.count} (BNN: ${p.count * dayF.price})'),
+            Text('${fix.image_uri} ${p.count} (BNN: ${p.count * dayF.price})'),
         onTap: () {
           router.push(PageId.sellGuide, params: {FRUIT_ID: '${p.fruit_id}'});
         },

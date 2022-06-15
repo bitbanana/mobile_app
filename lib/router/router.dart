@@ -4,7 +4,6 @@
 
 // Flutter
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 // Page
 import 'package:mobile_app/pages/buy/buy.dart';
 import 'package:mobile_app/pages/buy_guide/buy_guide.dart';
@@ -75,7 +74,7 @@ final router = UiRouter(
     ),
     UiPage(
       id: PageId.home,
-      build: (params) => const Home(),
+      build: (params) => Home(),
     ),
     UiPage(
       id: PageId.tradeConfirm,
@@ -106,7 +105,7 @@ final tabRouter = TabRouter(
       id: TabPageId.home,
       tabIcon: const Icon(Icons.home),
       tabLabel: 'Home',
-      build: () => const Home(),
+      build: () => Home(),
     ),
     TabPage(
       id: TabPageId.sell,

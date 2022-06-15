@@ -20,8 +20,7 @@ initContents({
   await router.loading(
     label: '準備しています...',
     task: () async {
-      ref.read(wallet.notifier).update(myWallet); // Walletをメモリ上に保存
-      Storage().saveWallet(myWallet); //  Walletをストレージに保存
+      ref.read(wallet.notifier).update(myWallet); // Walletを保存
       await fetchFruits(ref); // 現在のフルーツ価格を取得
       await fetchPockets(ref); // ユーザーが所持するフルーツを取得
     },

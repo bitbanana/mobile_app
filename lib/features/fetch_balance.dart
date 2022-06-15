@@ -9,7 +9,5 @@ Future<void> fetchBalance(WidgetRef ref) async {
   final res = await req.send();
   final oldW = ref.read(wallet)!;
   final newW = oldW.copyWith(balance_memo: res.balance);
-  // DBへ保存
-  Storage().saveWallet(newW);
   ref.read(wallet.notifier).update(newW);
 }

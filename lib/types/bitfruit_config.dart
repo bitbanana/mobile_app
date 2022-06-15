@@ -6,11 +6,11 @@ class BitfruitConfig {
   // 名称
   String nickname;
   // 画像URL
-  String image_url;
+  String image_uri;
 
   BitfruitConfig({
     required this.fruit_id,
     required this.nickname,
-    required this.image_url,
+    required this.image_uri,
   });
 }
