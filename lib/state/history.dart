@@ -16,10 +16,10 @@ final history = StateNotifierProvider<Notifier, List<Receipt>>((ref) {
     const Receipt(
       outFruitId: 3,
       outFruitCount: 4,
-      outBananaCount: 0,
+      outBananas: 0,
       inFruitId: null,
       inFruitCount: 0,
-      inBananaCount: 150,
+      inBananas: 150,
     ),
   ]);
 });

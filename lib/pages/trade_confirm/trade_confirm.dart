@@ -41,13 +41,13 @@ class TradeConfirm extends HookConsumerWidget {
       if (rcpt.outFruitId != null)
         Text('OUT Item ${rcpt.outFruitId} * ${rcpt.outFruitCount}'),
       // 出て行く コイン 個数
-      if (rcpt.outBananaCount > 0) Text('OUT BNN ${rcpt.outBananaCount}'),
+      if (rcpt.outBananas > 0) Text('OUT BNN ${rcpt.outBananas}'),
 
       // 入ってくる アイテム 個数
       if (rcpt.inFruitId != null)
         Text('IN Item ${rcpt.inFruitId} * ${rcpt.inFruitCount}'),
       // 入ってくる コイン 個数
-      if (rcpt.inBananaCount > 0) Text('IN BNN ${rcpt.inBananaCount}'),
+      if (rcpt.inBananas > 0) Text('IN BNN ${rcpt.inBananas}'),
       const Text('取引を確定してもよろしいでしょうか?'),
       button,
     ]);

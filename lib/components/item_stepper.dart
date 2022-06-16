@@ -3,14 +3,28 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class ItemStepper extends HookConsumerWidget {
-  final maxCount = 20;
-  final minCount = 1;
+  final int maxCount;
+  final int minCount;
+  final int initilalCount;
+  final void Function(int count) onChangeCount;
 
-  const ItemStepper({Key? key}) : super(key: key);
+  const ItemStepper({
+    Key? key,
+    required this.maxCount,
+    required this.minCount,
+    required this.initilalCount,
+    required this.onChangeCount,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final count = useState(minCount);
+    final count = useState(initilalCount);
+    useEffect(() {
+      count.addListener(() {
+        onChangeCount(count.value);
+      });
+      return null;
+    }, []);
 
     /// マイナスボタン
     final minusBtn = IconButton(

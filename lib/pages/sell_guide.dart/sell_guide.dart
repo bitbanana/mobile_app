@@ -15,20 +15,37 @@ class SellGuide extends HookConsumerWidget {
   final String? fruitId;
   const SellGuide({required this.fruitId, Key? key}) : super(key: key);
 
-  initRcpt(WidgetRef ref, int fId) {
+  initRcpt(WidgetRef ref) {
     final fruits = ref.read(bitfruits)!;
     final pockets = ref.read(fruitPockets)!;
+    final fId = int.parse(fruitId!);
     final f = fruits.firstWhere((e) => e.fruit_id == fId);
     final p = pockets.firstWhere((e) => e.fruit_id == fId);
     final rcpt = Receipt(
-      outFruitId: fId,
+      outFruitId: f.fruit_id,
       outFruitCount: p.count,
-      outBananaCount: 0,
+      outBananas: 0,
       inFruitId: null,
       inFruitCount: 0,
-      inBananaCount: p.count * f.price,
+      inBananas: p.count * f.price,
     );
     ref.read(receipt.notifier).update(rcpt);
+  }
+
+  onChangeCount(WidgetRef ref, int count) {
+    final fId = int.parse(fruitId!);
+    final fruits = ref.read(bitfruits)!;
+    final f = fruits.firstWhere((e) => e.fruit_id == fId);
+    final oldRcpt = ref.read(receipt)!;
+    final newRcpt = Receipt(
+      outFruitId: oldRcpt.outFruitId,
+      outFruitCount: count, // ここを変更
+      outBananas: oldRcpt.outBananas,
+      inFruitId: oldRcpt.inFruitId,
+      inFruitCount: oldRcpt.inFruitCount,
+      inBananas: count * f.price, // ここを変更
+    );
+    ref.read(receipt.notifier).update(newRcpt);
   }
 
   @override
@@ -40,9 +57,7 @@ class SellGuide extends HookConsumerWidget {
       final onAppear = OnAppear(
         () {
           debugPrint('Sell Guide から レシート を初期化します');
-          if (fruitId == null) return;
-          final fId = int.parse(fruitId!);
-          initRcpt(ref, fId);
+          initRcpt(ref);
         },
         child: const Text('画面を準備中...'),
       );
@@ -65,7 +80,12 @@ class SellGuide extends HookConsumerWidget {
           router.push(PageId.itemDetail);
         },
       ),
-      const ItemStepper(),
+      ItemStepper(
+        maxCount: 20,
+        minCount: 1,
+        initilalCount: rcpt.outFruitCount,
+        onChangeCount: (count) => onChangeCount(ref, count),
+      ),
       button,
     ]);
     final center = Center(child: column);

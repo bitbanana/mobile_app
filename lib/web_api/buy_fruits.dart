@@ -11,6 +11,7 @@ class BuyFruitsReq {
     var urlString = bitbananaUrl + '/buy-fruits';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
+    print(order.toJson().toString());
     final response = await http.post(
       url,
       body: jsonEncode(order),

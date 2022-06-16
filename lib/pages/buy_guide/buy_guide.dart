@@ -14,18 +14,35 @@ class BuyGuide extends HookConsumerWidget {
   final String? fruitId;
   const BuyGuide({required this.fruitId, Key? key}) : super(key: key);
 
-  initRcpt(WidgetRef ref, int fId) {
+  initRcpt(WidgetRef ref) {
+    final fId = int.parse(fruitId!);
     final fruits = ref.read(bitfruits)!;
     final f = fruits.firstWhere((e) => e.fruit_id == fId);
     final rcpt = Receipt(
       outFruitId: null,
       outFruitCount: 0,
-      outBananaCount: f.price,
+      outBananas: f.price,
       inFruitId: fId,
       inFruitCount: 1,
-      inBananaCount: 0,
+      inBananas: 0,
     );
     ref.read(receipt.notifier).update(rcpt);
+  }
+
+  onChangeCount(WidgetRef ref, int count) {
+    final fId = int.parse(fruitId!);
+    final fruits = ref.read(bitfruits)!;
+    final f = fruits.firstWhere((e) => e.fruit_id == fId);
+    final oldRcpt = ref.read(receipt)!;
+    final newRcpt = Receipt(
+      outFruitId: oldRcpt.outFruitId,
+      outFruitCount: oldRcpt.outFruitCount,
+      outBananas: count * f.price, // ここを変更
+      inFruitId: oldRcpt.inFruitId,
+      inFruitCount: count, // ここを変更
+      inBananas: oldRcpt.inBananas,
+    );
+    ref.read(receipt.notifier).update(newRcpt);
   }
 
   @override
@@ -37,9 +54,7 @@ class BuyGuide extends HookConsumerWidget {
       final onAppear = OnAppear(
         () {
           debugPrint('Buy Guide から レシート を初期化します');
-          if (fruitId == null) return;
-          final fId = int.parse(fruitId!);
-          initRcpt(ref, fId);
+          initRcpt(ref);
         },
         child: const Text('画面を準備中...'),
       );
@@ -63,7 +78,12 @@ class BuyGuide extends HookConsumerWidget {
           router.push(PageId.itemDetail);
         },
       ),
-      const ItemStepper(),
+      ItemStepper(
+        maxCount: 20,
+        minCount: 1,
+        initilalCount: 1,
+        onChangeCount: (count) => onChangeCount(ref, count),
+      ),
       button,
       Text('受け取った Item ID: $fruitId'),
     ]);

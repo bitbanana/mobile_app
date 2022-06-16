@@ -42,7 +42,7 @@ class History extends HookConsumerWidget {
       child: ListTile(
         leading: Icon(Icons.people),
         title: Text(
-          'OUT Item: ${rcpt.outFruitId} OUT BNN ${rcpt.outBananaCount} IN Item ${rcpt.inFruitId} IN BNN ${rcpt.inBananaCount}',
+          'OUT Item: ${rcpt.outFruitId} OUT BNN ${rcpt.outBananas} IN Item ${rcpt.inFruitId} IN BNN ${rcpt.inBananas}',
         ),
         onTap: () {
           ref.read(receipt.notifier).update(rcpt);
