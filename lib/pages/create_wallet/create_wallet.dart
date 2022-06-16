@@ -29,7 +29,7 @@ class CreateWallet extends HookConsumerWidget {
 
     // インポートボタン
     final importBtn = ElevatedButton(
-      onPressed: () => _importWallet(context),
+      onPressed: () => _importWallet(context, ref),
       child: const Text('import'),
     );
 
@@ -61,9 +61,11 @@ class CreateWallet extends HookConsumerWidget {
   }
 
   // インポートボタンを押下
-  _importWallet(BuildContext context) {
+  _importWallet(BuildContext context, WidgetRef ref) {
     final dialog = ImportBnnKeyDialog(
-      didImport: () {
+      didImport: (wallet) async {
+        // 読み込んだWalletで初期化
+        await initContents(ref: ref, myWallet: wallet);
         // top画面へ遷移
         router.push(PageId.top);
       },

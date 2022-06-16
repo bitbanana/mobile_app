@@ -10,7 +10,7 @@ import 'package:mobile_app/state/wallet.dart';
 import 'package:mobile_app/types/bitbanana_wallet.dart';
 
 class ImportBnnKeyDialog extends HookConsumerWidget {
-  final void Function() didImport;
+  final void Function(BitbananaWallet wallet) didImport;
   const ImportBnnKeyDialog({
     Key? key,
     required this.didImport,
@@ -45,9 +45,8 @@ class ImportBnnKeyDialog extends HookConsumerWidget {
       try {
         final json = jsonDecode(text);
         final wallet = BitbananaWallet.fromJson(json);
-        await initContents(ref: ref, myWallet: wallet);
         Navigator.pop(context);
-        didImport();
+        didImport(wallet);
       } catch (err) {
         debugPrint('読み込みに失敗しました');
         debugPrint(err.toString());

@@ -21,6 +21,7 @@ dependencies:
   file_picker: # ファイルインポート
   uuid: # UUID
   collection: # firstWhereOrNull
+  cron: # 定期実行
   
 dev_dependencies:
   flutter_test:

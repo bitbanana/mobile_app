@@ -117,32 +117,36 @@ enum TabPageId {
   history,
 }
 
-final tabRouter = TabRouter(
-  initialTabPageId: TabPageId.home,
-  tabPages: [
-    TabPage(
-      id: TabPageId.home,
-      tabIcon: const Icon(Icons.home),
-      tabLabel: 'Home',
-      build: () => Home(),
-    ),
-    TabPage(
-      id: TabPageId.sell,
-      tabIcon: const Icon(Icons.arrow_upward_outlined),
-      tabLabel: 'Sell',
-      build: () => const Sell(),
-    ),
-    TabPage(
-      id: TabPageId.buy,
-      tabIcon: const Icon(Icons.arrow_downward_outlined),
-      tabLabel: 'Buy',
-      build: () => const Buy(),
-    ),
-    TabPage(
-      id: TabPageId.history,
-      tabIcon: const Icon(Icons.history),
-      tabLabel: 'History',
-      build: () => const History(),
-    ),
-  ],
-);
+TabRouter? tabRouter;
+
+initTabRouter() {
+  tabRouter = TabRouter(
+    initialTabPageId: TabPageId.home,
+    tabPages: [
+      TabPage(
+        id: TabPageId.home,
+        tabIcon: const Icon(Icons.home),
+        tabLabel: 'Home',
+        build: () => Home(),
+      ),
+      TabPage(
+        id: TabPageId.sell,
+        tabIcon: const Icon(Icons.arrow_upward_outlined),
+        tabLabel: 'Sell',
+        build: () => const Sell(),
+      ),
+      TabPage(
+        id: TabPageId.buy,
+        tabIcon: const Icon(Icons.arrow_downward_outlined),
+        tabLabel: 'Buy',
+        build: () => const Buy(),
+      ),
+      TabPage(
+        id: TabPageId.history,
+        tabIcon: const Icon(Icons.history),
+        tabLabel: 'History',
+        build: () => const History(),
+      ),
+    ],
+  );
+}

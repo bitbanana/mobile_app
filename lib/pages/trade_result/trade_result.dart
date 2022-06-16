@@ -14,7 +14,7 @@ class TradeResult extends HookConsumerWidget {
 
     final button = ElevatedButton(
       onPressed: () {
-        tabRouter.select(TabPageId.sell);
+        tabRouter!.select(TabPageId.sell);
         router.push(PageId.top);
       },
       child: const Text('OK'),
