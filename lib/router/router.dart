@@ -17,13 +17,15 @@ import 'package:mobile_app/pages/onboading/welcome.dart';
 import 'package:mobile_app/pages/sell/sell.dart';
 import 'package:mobile_app/pages/sell_guide.dart/sell_guide.dart';
 import 'package:mobile_app/pages/splash/splash.dart';
-import 'package:mobile_app/pages/top/top.dart';
+import 'package:mobile_app/pages/home_screen/home_screen.dart';
 import 'package:mobile_app/pages/trade_confirm/trade_confirm.dart';
 import 'package:mobile_app/pages/trade_result/trade_result.dart';
 // Page Router
 import 'package:ui_router/ui_router.dart';
 // config
 import 'package:mobile_app/config/param_keys.dart';
+
+import '../pages/onboading/receive_start_bouns.dart';
 
 enum PageId {
   splash,
@@ -54,7 +56,7 @@ final router = UiRouter(
     ),
     UiPage(
       id: PageId.top,
-      build: (params) => const Top(),
+      build: (params) => const HomeScreen(),
     ),
     UiPage(
       id: PageId.createWallet,
@@ -107,7 +109,20 @@ enum OnboardingPageId {
 
 final onboardingRouter = UiRouter(
   initialPageId: OnboardingPageId.welcome,
-  pages: [], // 動的に生成
+  pages: [
+    UiPage(
+      id: OnboardingPageId.receiveStartBonus,
+      build: (params) => const ReceiveStartBonus(),
+    ),
+    UiPage(
+      id: OnboardingPageId.welcome,
+      build: (params) => const Welcome(),
+    ),
+    UiPage(
+      id: OnboardingPageId.aboutBnnKey,
+      build: (params) => const AboutBnnKey(),
+    ),
+  ],
 );
 
 enum TabPageId {

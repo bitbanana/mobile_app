@@ -1,6 +1,6 @@
 name: mobile_app
 description: PWA for Bit Banana.
-publish_to: 'none'
+publish_to: "none"
 
 version: 0.0.3
 
@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   hooks_riverpod: ^1.0.3 # 状態管理
   ui_router: # ルーター
+    path: ../ui_router
   intl: # 数字のフォーマット
   jose: # JWK
   crypto: # RSA256ハッシュ関数
@@ -22,11 +23,11 @@ dependencies:
   uuid: # UUID
   collection: # firstWhereOrNull
   cron: # 定期実行
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.0
   build_runner:
   freezed:
 

@@ -14,70 +14,11 @@ class Onboarding extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ValueNotifier<OnboardingPageId?> nextPage = useState(null);
-    final isFinished = useState(false);
-
-    useEffect(() {
-      debugPrint("init Onboarding");
-      final welcomePage = UiPage(
-        id: OnboardingPageId.welcome,
-        build: (params) => Welcome(
-          onReady: () {
-            nextPage.value = OnboardingPageId.aboutBnnKey;
-          },
-        ),
-      );
-      final aboutBnnKeyPage = UiPage(
-        id: OnboardingPageId.aboutBnnKey,
-        build: (params) => AboutBnnKey(
-          onReady: () {
-            nextPage.value = OnboardingPageId.receiveStartBonus;
-          },
-        ),
-      );
-      final receiveStartBonusPage = UiPage(
-        id: OnboardingPageId.receiveStartBonus,
-        build: (params) => ReceiveStartBonus(
-          onReady: () {
-            isFinished.value = true;
-          },
-        ),
-      );
-      onboardingRouter.pages.add(welcomePage);
-      onboardingRouter.pages.add(aboutBnnKeyPage);
-      onboardingRouter.pages.add(receiveStartBonusPage);
-    }, []);
-
-    /// 次のオンボーデングページへ進むボタン
-    final nextPageButton = FloatingActionButton.extended(
-      onPressed: () {
-        final _nextPage = nextPage.value;
-        nextPage.value = null;
-        onboardingRouter.push(_nextPage);
-      },
-      label: const Text('Next'),
-      icon: const Icon(Icons.arrow_right),
-      backgroundColor: Colors.green,
-    );
-
-    /// オンボーデング終了ボタン
-    final finishButton = FloatingActionButton.extended(
-      onPressed: () {
-        router.push(PageId.top);
-      },
-      label: const Text("Let's Start"),
-      icon: const Icon(Icons.arrow_right),
-      backgroundColor: Colors.green,
-    );
-
     /// 画面
     return Scaffold(
       appBar: BlueAppBar(title: 'Onboarding'),
       backgroundColor: Colors.grey[200],
       body: onboardingRouter.widget(),
-      floatingActionButton: nextPage.value != null
-          ? nextPageButton
-          : (isFinished.value ? finishButton : null),
     );
   }
 }

@@ -5,8 +5,8 @@ import 'package:mobile_app/components/on_appear.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/receipt.dart';
 
-class Top extends HookConsumerWidget {
-  const Top({Key? key}) : super(key: key);
+class HomeScreen extends HookConsumerWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,6 +17,9 @@ class Top extends HookConsumerWidget {
     }, []);
     return OnAppear(
       () {
+        router.setLogger((log) {
+          debugPrint('UI-Router: $log');
+        });
         router.willPush((left, right) {
           final fromGuilde =
               right == PageId.sellGuide || right == PageId.buyGuide;
