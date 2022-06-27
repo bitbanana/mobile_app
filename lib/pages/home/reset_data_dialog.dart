@@ -4,7 +4,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/wallet.dart';
+import 'package:mobile_app/state/bnn_card.dart';
 
 class ResetDataDialog extends HookConsumerWidget {
   const ResetDataDialog({Key? key}) : super(key: key);
@@ -12,8 +12,8 @@ class ResetDataDialog extends HookConsumerWidget {
   _resetData(BuildContext context, WidgetRef ref) {
     print("データをリセットします");
     router.popTo(PageId.splash);
-    ref.read(wallet.notifier).delete();
-    router.push(PageId.createWallet);
+    ref.read(bnnCard.notifier).delete();
+    router.push(PageId.createBnnKey);
     Navigator.pop(context);
   }
 

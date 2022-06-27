@@ -6,7 +6,7 @@ class StartBonusReq {
   String addr;
   StartBonusReq({required this.addr});
   Future<StartBonusRes> send() async {
-    var urlString = bitbananaUrl + '/start-bonus';
+    var urlString = '$bitbananaUrl/start-bonus';
     var url = Uri.parse(urlString);
     final encoding = Encoding.getByName('utf-8');
     final body = jsonEncode({"addr": addr});

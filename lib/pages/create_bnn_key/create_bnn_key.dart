@@ -1,23 +1,20 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
-import 'package:mobile_app/features/create_new_wallet.dart';
+import 'package:mobile_app/features/create_bnn_key.dart';
 import 'package:mobile_app/features/init_contents.dart';
-import 'package:mobile_app/pages/create_wallet/import_bnn_key_dialog.dart';
+import 'package:mobile_app/pages/create_bnn_key/import_bnn_key_dialog.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:mobile_app/types/bitbanana_wallet.dart';
 
 /// アプリ
-class CreateWallet extends HookConsumerWidget {
-  const CreateWallet({Key? key}) : super(key: key);
+class CreateBnnKey extends HookConsumerWidget {
+  const CreateBnnKey({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     /// 画面上のバー
     final appBar = BlueAppBar(
-      title: 'Wallet読み込み',
+      title: 'BnnKey読み込み',
       canBack: false,
     );
 
@@ -29,7 +26,7 @@ class CreateWallet extends HookConsumerWidget {
 
     // インポートボタン
     final importBtn = ElevatedButton(
-      onPressed: () => _importWallet(context, ref),
+      onPressed: () => _importBnnKey(context, ref),
       child: const Text('import'),
     );
 
@@ -53,19 +50,19 @@ class CreateWallet extends HookConsumerWidget {
 
   // Newスタートボタンを押下
   newStart(WidgetRef ref) async {
-    // 新規 Wallet を準備
-    final w = createNewWallet();
-    await initContents(ref: ref, myWallet: w);
+    // 新規 BnnKey を準備
+    final bnnKey = createBnnKey();
+    await initContents(ref: ref, bnnKey: bnnKey);
     // top画面へ遷移
     router.push(PageId.onboarding);
   }
 
   // インポートボタンを押下
-  _importWallet(BuildContext context, WidgetRef ref) {
+  _importBnnKey(BuildContext context, WidgetRef ref) {
     final dialog = ImportBnnKeyDialog(
-      didImport: (wallet) async {
-        // 読み込んだWalletで初期化
-        await initContents(ref: ref, myWallet: wallet);
+      didImport: (bnnKey) async {
+        // 読み込んだBnnKeyで初期化
+        await initContents(ref: ref, bnnKey: bnnKey);
         // top画面へ遷移
         router.push(PageId.top);
       },

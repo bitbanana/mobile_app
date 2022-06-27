@@ -1,6 +1,9 @@
 import 'package:intl/intl.dart';
 
 extension DateFormatter on DateTime {
+  // datetime の復元
+  // final dateTime = DateTime.parse(createdAt).toLocal();
+
   String format(String format) {
     return DateFormat(format).format(this);
   }

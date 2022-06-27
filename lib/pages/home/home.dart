@@ -5,24 +5,28 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
+import 'package:mobile_app/components/flip_view.dart';
+import 'package:mobile_app/components/rotating.dart';
 import 'package:mobile_app/features/fetch_balance.dart';
 import 'package:mobile_app/pages/home/edit_nickname_dialog.dart';
 import 'package:mobile_app/pages/home/export_bnn_key_dialog.dart';
 import 'package:mobile_app/pages/home/reset_data_dialog.dart';
-import 'package:mobile_app/pages/home/wallet_card.dart';
+import 'package:mobile_app/pages/home/bitbanana_card.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/wallet.dart';
+import 'package:mobile_app/state/bnn_card.dart';
 import 'package:mobile_app/web_api/start_bonus.dart';
 
 /// アプリ
 class Home extends HookConsumerWidget {
   Home({Key? key}) : super(key: key);
 
+  final controller = FlipController();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _wallet = ref.watch(wallet);
-    if (_wallet == null) {
-      return const Text('Walletが見つかりません');
+    final bnnCardState = ref.watch(bnnCard);
+    if (bnnCardState == null) {
+      return const Text('BnnCardが見つかりません');
     }
 
     /// Exportボタン
@@ -31,53 +35,49 @@ class Home extends HookConsumerWidget {
       child: const Text('ビットバナナの鍵を保存'),
     );
 
-    /// Debugボタン
-    final debugButton = ElevatedButton(
-      onPressed: () => debug(ref),
-      child: const Text('debug'),
-    );
-
-    /// 残高更新ボタン
-    final fetchBalanceButton = ElevatedButton(
-      onPressed: () => _fetchBalance(ref),
-      child: const Text('fetchBalance'),
-    );
-
-    /// データをリセットボタン
-    final resetDataButton = ElevatedButton(
-      onPressed: () => _resetData(context, ref),
-      child: const Text('resetData'),
+    final bnnCoin = SizedBox(
+      width: 80,
+      height: 80,
+      child: Image.asset('images/bitbanana-block.png'),
     );
 
     final screenSize = MediaQuery.of(context).size;
-    final wCardSize = walletCardSize(screenW: screenSize.width);
+    final cardSize = bnnCardSize(screenW: screenSize.width);
 
-    final wCard = SizedBox(
-      width: wCardSize.width,
-      height: wCardSize.height,
-      child: WalletCard(
-        wallet: _wallet,
-        width: wCardSize.width,
-        height: wCardSize.height,
+    final bnnCardWidget = SizedBox(
+      width: cardSize.width,
+      height: cardSize.height,
+      child: BitbananaCard(
+        bnnKey: bnnCardState,
+        width: cardSize.width,
+        height: cardSize.height,
       ),
     );
-
-    final center = Center(child: wCard);
 
     final column = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        Text('Bit Banana (ビットバナナ) β版'),
+        Rotating(
+          interval: 2,
+          duration: 1,
+          child: bnnCoin,
+        ),
         exportButton,
-        debugButton,
-        fetchBalanceButton,
-        resetDataButton,
-        center,
+        bnnCardWidget,
+        Flip(
+          controller: controller,
+          duration: 3,
+          startWithFront: true,
+          direction: FlipDirection.vertical,
+          frontChild: bnnCoin,
+          backChild: bnnCoin,
+        ),
       ],
     );
 
     /// 画面
     return Scaffold(
-      appBar: BlueAppBar(title: 'Bit Banana (ビットバナナ) β版'),
       backgroundColor: Colors.grey[200],
       body: column,
       floatingActionButton: FloatingActionButton(
@@ -95,44 +95,10 @@ class Home extends HookConsumerWidget {
   }
 
   _exportKey(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (_) => const ExportBnnKeyDialog(),
-    );
-  }
-
-  debug(WidgetRef ref) async {
-    // 1
-    // await fetchBalance(ref);
-    // 2
-    final _wallet = ref.read(wallet)!;
-    final req = StartBonusReq(addr: _wallet.addr);
-    final res = await req.send();
-    // 3
-    // final req = SeeFruitsReq();
-    // final res = await req.send();
-    // 4
-    // final _wallet = ref.read(wallet)!;
-    // final req = SeePocketsReq(addr: _wallet.addr);
-    // final res = await req.send();
-    // 5
-    // final order = BuyOrder(addr: "MyAddr", fruit_id: 0, count: 5);
-    // final req = BuyFruitsReq(order: order);
-    // final res = await req.send();
-    // 6
-    // final order = SellOrder(addr: "MyAddr", fruit_id: 0, count: 5);
-    // final req = SellFruitsReq(order: order);
-    // final res = await req.send();
-  }
-
-  _fetchBalance(WidgetRef ref) async {
-    await fetchBalance(ref);
-  }
-
-  _resetData(BuildContext context, WidgetRef ref) {
-    showDialog(
-      context: context,
-      builder: (_) => const ResetDataDialog(),
-    );
+    controller.flip();
+    // showDialog(
+    //   context: context,
+    //   builder: (_) => const ExportBnnKeyDialog(),
+    // );
   }
 }

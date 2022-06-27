@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'bitbanana_wallet.dart';
+part of 'bitbanana_key.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-BitbananaWallet _$BitbananaWalletFromJson(Map<String, dynamic> json) {
-  return _BitbananaWallet.fromJson(json);
+BitbananaKey _$BitbananaKeyFromJson(Map<String, dynamic> json) {
+  return _BitbananaKey.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BitbananaWallet {
+mixin _$BitbananaKey {
   String get addr => throw _privateConstructorUsedError;
   String get jwk => throw _privateConstructorUsedError;
   int get balance_memo => throw _privateConstructorUsedError;
@@ -29,15 +29,15 @@ mixin _$BitbananaWallet {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BitbananaWalletCopyWith<BitbananaWallet> get copyWith =>
+  $BitbananaKeyCopyWith<BitbananaKey> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BitbananaWalletCopyWith<$Res> {
-  factory $BitbananaWalletCopyWith(
-          BitbananaWallet value, $Res Function(BitbananaWallet) then) =
-      _$BitbananaWalletCopyWithImpl<$Res>;
+abstract class $BitbananaKeyCopyWith<$Res> {
+  factory $BitbananaKeyCopyWith(
+          BitbananaKey value, $Res Function(BitbananaKey) then) =
+      _$BitbananaKeyCopyWithImpl<$Res>;
   $Res call(
       {String addr,
       String jwk,
@@ -48,13 +48,12 @@ abstract class $BitbananaWalletCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BitbananaWalletCopyWithImpl<$Res>
-    implements $BitbananaWalletCopyWith<$Res> {
-  _$BitbananaWalletCopyWithImpl(this._value, this._then);
+class _$BitbananaKeyCopyWithImpl<$Res> implements $BitbananaKeyCopyWith<$Res> {
+  _$BitbananaKeyCopyWithImpl(this._value, this._then);
 
-  final BitbananaWallet _value;
+  final BitbananaKey _value;
   // ignore: unused_field
-  final $Res Function(BitbananaWallet) _then;
+  final $Res Function(BitbananaKey) _then;
 
   @override
   $Res call({
@@ -95,11 +94,11 @@ class _$BitbananaWalletCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BitbananaWalletCopyWith<$Res>
-    implements $BitbananaWalletCopyWith<$Res> {
-  factory _$BitbananaWalletCopyWith(
-          _BitbananaWallet value, $Res Function(_BitbananaWallet) then) =
-      __$BitbananaWalletCopyWithImpl<$Res>;
+abstract class _$BitbananaKeyCopyWith<$Res>
+    implements $BitbananaKeyCopyWith<$Res> {
+  factory _$BitbananaKeyCopyWith(
+          _BitbananaKey value, $Res Function(_BitbananaKey) then) =
+      __$BitbananaKeyCopyWithImpl<$Res>;
   @override
   $Res call(
       {String addr,
@@ -111,15 +110,14 @@ abstract class _$BitbananaWalletCopyWith<$Res>
 }
 
 /// @nodoc
-class __$BitbananaWalletCopyWithImpl<$Res>
-    extends _$BitbananaWalletCopyWithImpl<$Res>
-    implements _$BitbananaWalletCopyWith<$Res> {
-  __$BitbananaWalletCopyWithImpl(
-      _BitbananaWallet _value, $Res Function(_BitbananaWallet) _then)
-      : super(_value, (v) => _then(v as _BitbananaWallet));
+class __$BitbananaKeyCopyWithImpl<$Res> extends _$BitbananaKeyCopyWithImpl<$Res>
+    implements _$BitbananaKeyCopyWith<$Res> {
+  __$BitbananaKeyCopyWithImpl(
+      _BitbananaKey _value, $Res Function(_BitbananaKey) _then)
+      : super(_value, (v) => _then(v as _BitbananaKey));
 
   @override
-  _BitbananaWallet get _value => super._value as _BitbananaWallet;
+  _BitbananaKey get _value => super._value as _BitbananaKey;
 
   @override
   $Res call({
@@ -130,7 +128,7 @@ class __$BitbananaWalletCopyWithImpl<$Res>
     Object? created_at = freezed,
     Object? version = freezed,
   }) {
-    return _then(_BitbananaWallet(
+    return _then(_BitbananaKey(
       addr: addr == freezed
           ? _value.addr
           : addr // ignore: cast_nullable_to_non_nullable
@@ -161,8 +159,8 @@ class __$BitbananaWalletCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BitbananaWallet implements _BitbananaWallet {
-  const _$_BitbananaWallet(
+class _$_BitbananaKey implements _BitbananaKey {
+  const _$_BitbananaKey(
       {required this.addr,
       required this.jwk,
       required this.balance_memo,
@@ -170,8 +168,8 @@ class _$_BitbananaWallet implements _BitbananaWallet {
       required this.created_at,
       required this.version});
 
-  factory _$_BitbananaWallet.fromJson(Map<String, dynamic> json) =>
-      _$$_BitbananaWalletFromJson(json);
+  factory _$_BitbananaKey.fromJson(Map<String, dynamic> json) =>
+      _$$_BitbananaKeyFromJson(json);
 
   @override
   final String addr;
@@ -188,14 +186,14 @@ class _$_BitbananaWallet implements _BitbananaWallet {
 
   @override
   String toString() {
-    return 'BitbananaWallet(addr: $addr, jwk: $jwk, balance_memo: $balance_memo, nickname: $nickname, created_at: $created_at, version: $version)';
+    return 'BitbananaKey(addr: $addr, jwk: $jwk, balance_memo: $balance_memo, nickname: $nickname, created_at: $created_at, version: $version)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BitbananaWallet &&
+            other is _BitbananaKey &&
             const DeepCollectionEquality().equals(other.addr, addr) &&
             const DeepCollectionEquality().equals(other.jwk, jwk) &&
             const DeepCollectionEquality()
@@ -219,26 +217,26 @@ class _$_BitbananaWallet implements _BitbananaWallet {
 
   @JsonKey(ignore: true)
   @override
-  _$BitbananaWalletCopyWith<_BitbananaWallet> get copyWith =>
-      __$BitbananaWalletCopyWithImpl<_BitbananaWallet>(this, _$identity);
+  _$BitbananaKeyCopyWith<_BitbananaKey> get copyWith =>
+      __$BitbananaKeyCopyWithImpl<_BitbananaKey>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BitbananaWalletToJson(this);
+    return _$$_BitbananaKeyToJson(this);
   }
 }
 
-abstract class _BitbananaWallet implements BitbananaWallet {
-  const factory _BitbananaWallet(
+abstract class _BitbananaKey implements BitbananaKey {
+  const factory _BitbananaKey(
       {required final String addr,
       required final String jwk,
       required final int balance_memo,
       required final String nickname,
       required final String created_at,
-      required final String version}) = _$_BitbananaWallet;
+      required final String version}) = _$_BitbananaKey;
 
-  factory _BitbananaWallet.fromJson(Map<String, dynamic> json) =
-      _$_BitbananaWallet.fromJson;
+  factory _BitbananaKey.fromJson(Map<String, dynamic> json) =
+      _$_BitbananaKey.fromJson;
 
   @override
   String get addr => throw _privateConstructorUsedError;
@@ -254,6 +252,6 @@ abstract class _BitbananaWallet implements BitbananaWallet {
   String get version => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BitbananaWalletCopyWith<_BitbananaWallet> get copyWith =>
+  _$BitbananaKeyCopyWith<_BitbananaKey> get copyWith =>
       throw _privateConstructorUsedError;
 }

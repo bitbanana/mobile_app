@@ -20,18 +20,18 @@ class Splash extends HookConsumerWidget {
     // 表示された時
     final onAppear = OnAppear(
       () async {
-        // Wallet を読み込む
-        final w = await Storage().loadWallet();
-        if (w != null) {
-          debugPrint('既存のWalletを読み込みました');
+        // BnnKey を読み込む
+        final bnnKey = await Storage().loadBnnKey();
+        if (bnnKey != null) {
+          debugPrint('既存のBnnKeyを読み込みました');
           // 読み込めたとき
-          await initContents(ref: ref, myWallet: w);
+          await initContents(ref: ref, bnnKey: bnnKey);
           // top画面へ遷移
           router.push(PageId.top);
         } else {
           // 見つからなかった時
-          // create-wallet 画面へ遷移
-          router.push(PageId.createWallet);
+          // create-bnn-key 画面へ遷移
+          router.push(PageId.createBnnKey);
         }
       },
       child: img,

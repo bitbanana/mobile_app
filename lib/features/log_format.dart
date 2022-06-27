@@ -1,5 +1,5 @@
-import 'package:mobile_app/types/bitbanana_wallet.dart';
+import 'package:mobile_app/types/bitbanana_key.dart';
 
-String fmtWallet(BitbananaWallet wallet) {
-  return '''Wallet: ${wallet.nickname} balance: ${wallet.balance_memo}''';
+String fmtKey(BitbananaKey bnnKey) {
+  return '''BNN-Key: ${bnnKey.nickname} balance: ${bnnKey.balance_memo}''';
 }

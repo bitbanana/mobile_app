@@ -4,10 +4,11 @@
 
 // Flutter
 import 'package:flutter/material.dart';
+import 'package:mobile_app/dialogs/bad_network.dart';
 // Page
 import 'package:mobile_app/pages/buy/buy.dart';
 import 'package:mobile_app/pages/buy_guide/buy_guide.dart';
-import 'package:mobile_app/pages/create_wallet/create_wallet.dart';
+import 'package:mobile_app/pages/create_bnn_key/create_bnn_key.dart';
 import 'package:mobile_app/pages/history/history.dart';
 import 'package:mobile_app/pages/home/home.dart';
 import 'package:mobile_app/pages/item_detail/item_detail.dart';
@@ -30,7 +31,7 @@ import '../pages/onboading/receive_start_bouns.dart';
 enum PageId {
   splash,
   onboarding,
-  createWallet,
+  createBnnKey,
   top,
   home,
   sell,
@@ -59,8 +60,8 @@ final router = UiRouter(
       build: (params) => const HomeScreen(),
     ),
     UiPage(
-      id: PageId.createWallet,
-      build: (params) => const CreateWallet(),
+      id: PageId.createBnnKey,
+      build: (params) => const CreateBnnKey(),
     ),
     UiPage(
       id: PageId.sellGuide,
@@ -97,6 +98,12 @@ final router = UiRouter(
     UiPage(
       id: PageId.itemDetail,
       build: (params) => const ItemDetail(),
+    ),
+  ],
+  dialogs: [
+    UiDialog(
+      id: 'Bad',
+      build: (params, completer) => BadNetwork(completer),
     ),
   ],
 );

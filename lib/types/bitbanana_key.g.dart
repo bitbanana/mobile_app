@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bitbanana_wallet.dart';
+part of 'bitbanana_key.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BitbananaWallet _$$_BitbananaWalletFromJson(Map<String, dynamic> json) =>
-    _$_BitbananaWallet(
+_$_BitbananaKey _$$_BitbananaKeyFromJson(Map<String, dynamic> json) =>
+    _$_BitbananaKey(
       addr: json['addr'] as String,
       jwk: json['jwk'] as String,
       balance_memo: json['balance_memo'] as int,
@@ -16,7 +16,7 @@ _$_BitbananaWallet _$$_BitbananaWalletFromJson(Map<String, dynamic> json) =>
       version: json['version'] as String,
     );
 
-Map<String, dynamic> _$$_BitbananaWalletToJson(_$_BitbananaWallet instance) =>
+Map<String, dynamic> _$$_BitbananaKeyToJson(_$_BitbananaKey instance) =>
     <String, dynamic>{
       'addr': instance.addr,
       'jwk': instance.jwk,

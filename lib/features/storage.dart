@@ -1,27 +1,27 @@
 import 'dart:convert';
 
-import 'package:mobile_app/types/bitbanana_wallet.dart';
+import 'package:mobile_app/types/bitbanana_key.dart';
 import 'package:mobile_app/utils/key_value_storage.dart';
 
-const walletKey = 'WALLET';
+const bitbananaKey = 'BITBANANA_KEY';
 
 class Storage {
-  saveWallet(BitbananaWallet wallet) {
-    final str = jsonEncode(wallet);
-    saveString(walletKey, str);
+  saveBnnKey(BitbananaKey bnnKey) {
+    final str = jsonEncode(bnnKey);
+    saveString(bitbananaKey, str);
   }
 
-  Future<BitbananaWallet?> loadWallet() async {
-    final str = await loadString(walletKey);
+  Future<BitbananaKey?> loadBnnKey() async {
+    final str = await loadString(bitbananaKey);
     if (str != null) {
       final json = jsonDecode(str);
-      final wallet = BitbananaWallet.fromJson(json);
-      return wallet;
+      final bnnKey = BitbananaKey.fromJson(json);
+      return bnnKey;
     }
     return null;
   }
 
-  Future<void> deleteWallet() async {
-    await removeString(walletKey);
+  Future<void> deleteBnnKey() async {
+    await removeString(bitbananaKey);
   }
 }

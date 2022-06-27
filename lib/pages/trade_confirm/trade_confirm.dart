@@ -4,8 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/router/router.dart';
 import 'package:mobile_app/state/receipt.dart';
-import 'package:mobile_app/state/wallet.dart';
-import 'package:mobile_app/types/bitbanana_wallet.dart';
+import 'package:mobile_app/state/bnn_card.dart';
+import 'package:mobile_app/types/bitbanana_key.dart';
 import 'package:mobile_app/types/buy_order.dart';
 import 'package:mobile_app/types/receipt.dart';
 import 'package:mobile_app/types/sell_order.dart';
@@ -23,7 +23,7 @@ class TradeConfirm extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rcpt = ref.read(receipt);
-    final _wallet = ref.read(wallet);
+    final _bnnCard = ref.read(bnnCard);
     if (rcpt == null) {
       return const Text('表示する取引レシートがありません');
     }
@@ -32,7 +32,7 @@ class TradeConfirm extends HookConsumerWidget {
     final appBar = BlueAppBar(title: 'Trade Confirm (取引確認)', canBack: true);
 
     final button = ElevatedButton(
-      onPressed: () => onPressConfirm(rcpt, _wallet!),
+      onPressed: () => onPressConfirm(rcpt, _bnnCard!),
       child: const Text('Buy'),
     );
 
@@ -61,11 +61,11 @@ class TradeConfirm extends HookConsumerWidget {
   }
 }
 
-onPressConfirm(Receipt rcpt, BitbananaWallet myWallet) async {
+onPressConfirm(Receipt rcpt, BitbananaKey bnnKey) async {
   // 購入の場合
   if (rcpt.inFruitCount > 0) {
     final order = BuyOrder(
-      addr: myWallet.addr,
+      addr: bnnKey.addr,
       fruit_id: rcpt.inFruitId!,
       count: rcpt.inFruitCount,
     );
@@ -82,9 +82,9 @@ onPressConfirm(Receipt rcpt, BitbananaWallet myWallet) async {
       fee: 0,
     );
     final jsonCont = jsonEncode(cont);
-    final sig = sign(sigContent: jsonCont, jwk: myWallet.jwk);
+    final sig = sign(sigContent: jsonCont, jwk: bnnKey.jwk);
     final tx = Tx(
-      s_addr: myWallet.addr,
+      s_addr: bnnKey.addr,
       s_sig_cont: cont,
       s_sig: sig,
     );
@@ -96,7 +96,7 @@ onPressConfirm(Receipt rcpt, BitbananaWallet myWallet) async {
   // 売却の場合
   if (rcpt.outFruitCount > 0) {
     final order = SellOrder(
-      addr: myWallet.addr,
+      addr: bnnKey.addr,
       fruit_id: rcpt.outFruitId!,
       count: rcpt.outFruitCount,
     );

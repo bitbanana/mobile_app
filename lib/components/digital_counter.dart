@@ -7,11 +7,6 @@ class DigitalCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final icon = SizedBox(
-      width: 36,
-      height: 36,
-      child: Image.asset('images/bitbanana-icon.png'),
-    );
     final formatter = NumberFormat("#,###");
     var digits = formatter.format(count);
     final text = Text(
@@ -34,7 +29,7 @@ class DigitalCounter extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(8, 12, 16, 12),
       decoration: deco,
       child: Row(
-        children: [icon, const Spacer(), text],
+        children: [const Spacer(), text],
       ),
     );
   }

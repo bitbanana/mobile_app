@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/state/wallet.dart';
+import 'package:mobile_app/state/bnn_card.dart';
 
 class EditNicknameDialog extends HookConsumerWidget {
   final controller = TextEditingController();
@@ -21,9 +21,9 @@ class EditNicknameDialog extends HookConsumerWidget {
       child: const Text('OK'),
       onPressed: () {
         final newName = controller.text;
-        final oldWallet = ref.read(wallet);
-        final newWallet = oldWallet!.copyWith(nickname: newName);
-        ref.read(wallet.notifier).update(newWallet);
+        final oldCard = ref.read(bnnCard);
+        final newCard = oldCard!.copyWith(nickname: newName);
+        ref.read(bnnCard.notifier).update(newCard);
         Navigator.pop(dialogContext);
       },
     );
@@ -32,13 +32,13 @@ class EditNicknameDialog extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _wallet = ref.watch(wallet);
+    final _bnnCard = ref.watch(bnnCard);
     const title = Text('名前を変更');
     return AlertDialog(
       title: title,
       content: TextField(
         controller: controller,
-        decoration: InputDecoration(hintText: _wallet!.nickname),
+        decoration: InputDecoration(hintText: _bnnCard!.nickname),
       ),
       actions: <Widget>[
         _nicknameEditCancelButton(context),

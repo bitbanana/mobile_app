@@ -14,6 +14,7 @@ dependencies:
   ui_router: # ルーター
     path: ../ui_router
   intl: # 数字のフォーマット
+  http: # 通信
   jose: # JWK
   crypto: # RSA256ハッシュ関数
   shared_preferences: # ローカルデータ永続化
@@ -39,3 +40,6 @@ flutter:
     - family: Digital
       fonts:
         - asset: assets/fonts/EHSMB.TTF
+    - family: UserName
+      fonts:
+        - asset: assets/fonts/XXIIAven.ttf

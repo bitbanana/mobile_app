@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_app/features/init_contents.dart';
 import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/wallet.dart';
-import 'package:mobile_app/types/bitbanana_wallet.dart';
+import 'package:mobile_app/state/bnn_card.dart';
+import 'package:mobile_app/types/bitbanana_key.dart';
 
 class ImportBnnKeyDialog extends HookConsumerWidget {
-  final void Function(BitbananaWallet wallet) didImport;
+  final void Function(BitbananaKey bnnKey) didImport;
   const ImportBnnKeyDialog({
     Key? key,
     required this.didImport,
@@ -20,7 +20,7 @@ class ImportBnnKeyDialog extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     /// importボタン
     final importButton = ElevatedButton(
-      onPressed: () => importWallet(context, ref),
+      onPressed: () => importBnnKey(context, ref),
       child: const Text('選択する'),
     );
 
@@ -34,7 +34,7 @@ class ImportBnnKeyDialog extends HookConsumerWidget {
   }
 
   // インポートボタンを押下
-  importWallet(BuildContext context, WidgetRef ref) async {
+  importBnnKey(BuildContext context, WidgetRef ref) async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['json'],
@@ -44,9 +44,9 @@ class ImportBnnKeyDialog extends HookConsumerWidget {
       final text = const Utf8Decoder().convert(file);
       try {
         final json = jsonDecode(text);
-        final wallet = BitbananaWallet.fromJson(json);
+        final bnnKey = BitbananaKey.fromJson(json);
         Navigator.pop(context);
-        didImport(wallet);
+        didImport(bnnKey);
       } catch (err) {
         debugPrint('読み込みに失敗しました');
         debugPrint(err.toString());

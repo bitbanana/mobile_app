@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:mobile_app/types/bitbanana_wallet.dart';
+import 'package:mobile_app/types/bitbanana_key.dart';
 import 'package:mobile_app/types/sender_sig_content.dart';
 import 'package:mobile_app/types/tx.dart';
 import 'package:mobile_app/utils/signing.dart';
 import 'package:uuid/uuid.dart';
 
-Tx createBuyTx(BitbananaWallet w, int amount) {
+Tx createBuyTx(BitbananaKey w, int amount) {
   final uuid = const Uuid().v4();
   final cont = SenderSigContent(
     tx_id: uuid,

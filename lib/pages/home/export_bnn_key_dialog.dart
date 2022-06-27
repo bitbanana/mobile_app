@@ -3,18 +3,18 @@ import 'dart:convert';
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/state/wallet.dart';
+import 'package:mobile_app/state/bnn_card.dart';
 
 class ExportBnnKeyDialog extends HookConsumerWidget {
   const ExportBnnKeyDialog({Key? key}) : super(key: key);
 
   download(BuildContext context, WidgetRef ref) {
     Navigator.pop(context);
-    final _wallet = ref.read(wallet);
+    final _bnnCard = ref.read(bnnCard);
     const encoder = JsonEncoder.withIndent('  ');
-    String fileContent = encoder.convert(_wallet);
+    String fileContent = encoder.convert(_bnnCard);
     AnchorElement(href: 'data:application/json;charset=utf-8,$fileContent')
-      ..setAttribute('download', 'bitbanana_wallet.json')
+      ..setAttribute('download', 'bitbanana_key.json')
       ..click();
   }
 
