@@ -37,8 +37,13 @@ class Sell extends HookConsumerWidget {
       return onAppear;
     }
 
-    /// 画面上のバー
-    final appBar = BlueAppBar(title: 'Sell (Myフルーツ一覧)');
+    /// マイフルーツ ヘッダー
+    final header = Container(
+      width: double.infinity,
+      child: Image.asset(
+        'images/my-fruits-header.png',
+      ),
+    );
 
     /// リスト
     final list = ListView.builder(
@@ -49,8 +54,15 @@ class Sell extends HookConsumerWidget {
 
     /// 画面
     return Scaffold(
-      appBar: appBar,
-      body: list,
+      backgroundColor: Color(0xFF7F6000),
+      body: Column(
+        children: [
+          header,
+          Expanded(
+            child: list,
+          ),
+        ],
+      ),
     );
   }
 

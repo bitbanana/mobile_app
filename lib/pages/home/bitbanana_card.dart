@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/components/blue_gradient.dart';
 import 'package:mobile_app/components/digital_counter.dart';
 import 'package:mobile_app/types/bitbanana_key.dart';
-import 'package:intl/intl.dart';
 
 Size bnnCardSize({required double screenW}) {
   double w = 0;
@@ -36,7 +34,7 @@ class BitbananaCard extends HookConsumerWidget {
       style: TextStyle(
         fontFamily: 'UserName',
         fontSize: 30,
-        color: Colors.grey[800],
+        color: Colors.brown[600],
       ),
     );
 

@@ -4,14 +4,16 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Rotating extends StatefulWidget {
-  final int interval;
-  final int duration;
+  final double interval;
+  final double duration;
   final Widget child;
+  final Widget? backchild;
   const Rotating({
     Key? key,
     required this.child,
     required this.interval,
     required this.duration,
+    this.backchild,
   }) : super(key: key);
   @override
   RotatingState createState() => RotatingState();
@@ -21,12 +23,20 @@ class RotatingState extends State<Rotating>
     with SingleTickerProviderStateMixin {
   bool _isFront = true;
   Timer? _timer;
-
+  Widget? reversed;
   @override
   void initState() {
+    if (widget.backchild != null) {
+      reversed = widget.backchild!;
+    } else {
+      reversed = reverse(widget.child);
+    }
     super.initState();
+    setState(() {
+      _isFront = !_isFront;
+    });
     _timer = Timer.periodic(
-      Duration(seconds: widget.interval),
+      Duration(milliseconds: (widget.interval * 1000).round()),
       (Timer timer) {
         setState(() {
           _isFront = !_isFront;
@@ -41,10 +51,18 @@ class RotatingState extends State<Rotating>
     super.dispose();
   }
 
+  Widget reverse(Widget child) {
+    return Transform(
+      alignment: Alignment.center,
+      transform: Matrix4.rotationY(pi), // 좌우 반전
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-      duration: Duration(seconds: widget.duration),
+      duration: Duration(milliseconds: (widget.duration * 1000).round()),
       transitionBuilder: (Widget child, Animation<double> animation) {
         final rotate = Tween(begin: pi, end: 0.0).animate(animation);
 
@@ -66,7 +84,7 @@ class RotatingState extends State<Rotating>
       switchOutCurve: Curves.linear,
       child: _isFront
           ? Container(key: const ValueKey(true), child: widget.child)
-          : Container(key: const ValueKey(false), child: widget.child),
+          : Container(key: const ValueKey(false), child: reversed),
     );
   }
 }

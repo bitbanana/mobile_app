@@ -35,10 +35,16 @@ class Home extends HookConsumerWidget {
       child: const Text('ビットバナナの鍵を保存'),
     );
 
-    final bnnCoin = SizedBox(
+    final banana = SizedBox(
       width: 80,
       height: 80,
-      child: Image.asset('images/bitbanana-block.png'),
+      child: Image.asset('images/bitbanana-3d.png'),
+    );
+
+    final reversedBanana = SizedBox(
+      width: 80,
+      height: 80,
+      child: Image.asset('images/bitbanana-3d-reversed.png'),
     );
 
     final screenSize = MediaQuery.of(context).size;
@@ -60,25 +66,18 @@ class Home extends HookConsumerWidget {
         Text('Bit Banana (ビットバナナ) β版'),
         Rotating(
           interval: 2,
-          duration: 1,
-          child: bnnCoin,
+          duration: 2,
+          backchild: reversedBanana,
+          child: banana,
         ),
         exportButton,
         bnnCardWidget,
-        Flip(
-          controller: controller,
-          duration: 3,
-          startWithFront: true,
-          direction: FlipDirection.vertical,
-          frontChild: bnnCoin,
-          backChild: bnnCoin,
-        ),
       ],
     );
 
     /// 画面
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: const Color(0xFF7F6000),
       body: column,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.edit),

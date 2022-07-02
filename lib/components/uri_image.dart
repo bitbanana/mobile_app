@@ -19,11 +19,6 @@ class ImageUri {
   ImageUri._(this.scheme, this.path);
 
   // 公開用のコンストラクタ
-  factory ImageUri.assets(String imageName) {
-    return ImageUri('assets://' + imageName);
-  }
-
-  // 公開用のコンストラクタ
   factory ImageUri(String imageUri) {
     final components = imageUri.split('://');
     final schemeString = components.first;
@@ -32,7 +27,7 @@ class ImageUri {
     switch (schemeString) {
       case 'assets':
         scheme = ImageScheme.assets;
-        path = 'assets/images/' + components.last;
+        path = 'assets/images/${components.last}';
         break;
       case 'http':
         scheme = ImageScheme.network;
@@ -47,7 +42,7 @@ class ImageUri {
         path = components.last;
         break;
       default:
-        return throw Exception('不正な画像指定です' + imageUri);
+        return throw Exception('不正な画像指定です: $imageUri');
     }
     return ImageUri._(scheme, path);
   }
@@ -65,12 +60,11 @@ class UriImage extends StatelessWidget {
   // パッケージのテスト表示モード
   final ImageUri imageUri;
 
-  const UriImage(this.imageUri);
-  factory UriImage.stringUrl(String url) {
-    return UriImage(ImageUri(url));
-  }
+  UriImage(String uri, {Key? key})
+      : imageUri = ImageUri(uri),
+        super(key: key);
   factory UriImage.assetsName(String name) {
-    return UriImage(ImageUri.assets(name));
+    return UriImage('assets://$name');
   }
 
   @override

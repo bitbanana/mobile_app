@@ -14,24 +14,31 @@ class History extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rcpts = ref.read(history);
 
-    /// 画面上のバー
-    final appBar = BlueAppBar(title: 'History (取引履歴)');
-
     final list = ListView.builder(
       itemBuilder: (BuildContext context, int index) =>
           buildItem(rcpts[index], ref),
       itemCount: rcpts.length,
     );
 
-    final column = Column(children: const [
-      Text('取引履歴を見る機能は現在開発中です。もうしばらくお待ちください。'),
+    final column = Column(children: [
+      const Text('取引履歴を見る機能は現在開発中です'),
       // const Text('過去 20 件の取引記録が残ります'),
       // Expanded(child: list),
+      const Spacer(),
+      Center(
+        child: SizedBox(
+          width: 200,
+          height: 200,
+          child: Image.asset('images/coming-soon.png'),
+        ),
+      ),
+
+      const Spacer(),
     ]);
 
     /// 画面
     return Scaffold(
-      appBar: appBar,
+      backgroundColor: Colors.grey,
       body: column,
     );
   }

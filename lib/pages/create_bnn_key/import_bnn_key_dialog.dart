@@ -1,12 +1,7 @@
 import 'dart:convert';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/features/init_contents.dart';
-import 'package:mobile_app/router/router.dart';
-import 'package:mobile_app/state/bnn_card.dart';
 import 'package:mobile_app/types/bitbanana_key.dart';
 
 class ImportBnnKeyDialog extends HookConsumerWidget {
