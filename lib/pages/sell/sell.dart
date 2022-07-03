@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile_app/components/blue_app_bar.dart';
 import 'package:mobile_app/components/on_appear.dart';
 import 'package:mobile_app/config/fruit_configs.dart';
 import 'package:mobile_app/config/param_keys.dart';
@@ -38,10 +37,10 @@ class Sell extends HookConsumerWidget {
     }
 
     /// マイフルーツ ヘッダー
-    final header = Container(
+    final header = SizedBox(
       width: double.infinity,
       child: Image.asset(
-        'images/my-fruits-header.png',
+        'images/sell-header.png',
       ),
     );
 
@@ -54,7 +53,7 @@ class Sell extends HookConsumerWidget {
 
     /// 画面
     return Scaffold(
-      backgroundColor: Color(0xFF7F6000),
+      backgroundColor: const Color(0xFF7F6000),
       body: Column(
         children: [
           header,
@@ -73,7 +72,7 @@ class Sell extends HookConsumerWidget {
         ref.read(bitfruits)!.firstWhere((e) => e.fruit_id == p.fruit_id);
     return Card(
       child: ListTile(
-        leading: Icon(Icons.people),
+        leading: const Icon(Icons.people),
         title:
             Text('${fix.image_uri} ${p.count} (BNN: ${p.count * dayF.price})'),
         onTap: () {

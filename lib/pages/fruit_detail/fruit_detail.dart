@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// アプリ
-class ItemDetail extends HookConsumerWidget {
-  const ItemDetail({Key? key}) : super(key: key);
+class FruitDetail extends HookConsumerWidget {
+  const FruitDetail({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

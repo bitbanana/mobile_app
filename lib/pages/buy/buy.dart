@@ -32,13 +32,11 @@ class Buy extends HookConsumerWidget {
       return onAppear;
     }
 
-    final screenSize = MediaQuery.of(context).size;
-
     /// ショップヘッダー
-    final header = Container(
+    final header = SizedBox(
       width: double.infinity,
       child: Image.asset(
-        'images/shop-header.png',
+        'images/buy-header.png',
       ),
     );
 
@@ -107,8 +105,8 @@ class Buy extends HookConsumerWidget {
             child: Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(18),
-                  color: Colors.black,
+                  padding: const EdgeInsets.all(18),
+                  color: Colors.yellow[300],
                   width: 80,
                   height: 80,
                   child: UriImage(config.image_uri),

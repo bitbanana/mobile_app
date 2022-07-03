@@ -77,7 +77,7 @@ class SellGuide extends HookConsumerWidget {
     final column = Column(children: [
       ItemHeader(
         onPressedDetail: () {
-          router.push(PageId.itemDetail);
+          router.push(PageId.fruitDetail);
         },
       ),
       ItemStepper(

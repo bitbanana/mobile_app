@@ -9,9 +9,9 @@ import 'package:mobile_app/dialogs/bad_network.dart';
 import 'package:mobile_app/pages/buy/buy.dart';
 import 'package:mobile_app/pages/buy_guide/buy_guide.dart';
 import 'package:mobile_app/pages/create_bnn_key/create_bnn_key.dart';
+import 'package:mobile_app/pages/fruit_detail/fruit_detail.dart';
 import 'package:mobile_app/pages/history/history.dart';
 import 'package:mobile_app/pages/home/home.dart';
-import 'package:mobile_app/pages/item_detail/item_detail.dart';
 import 'package:mobile_app/pages/onboading/about_bnn_key.dart';
 import 'package:mobile_app/pages/onboading/onboading.dart';
 import 'package:mobile_app/pages/onboading/welcome.dart';
@@ -21,12 +21,11 @@ import 'package:mobile_app/pages/splash/splash.dart';
 import 'package:mobile_app/pages/home_screen/home_screen.dart';
 import 'package:mobile_app/pages/trade_confirm/trade_confirm.dart';
 import 'package:mobile_app/pages/trade_result/trade_result.dart';
+import 'package:mobile_app/pages/onboading/receive_start_bouns.dart';
 // Page Router
 import 'package:ui_router/ui_router.dart';
 // config
 import 'package:mobile_app/config/param_keys.dart';
-
-import '../pages/onboading/receive_start_bouns.dart';
 
 enum PageId {
   splash,
@@ -41,7 +40,7 @@ enum PageId {
   tradeConfirm,
   buyGuide,
   tradeResult,
-  itemDetail,
+  fruitDetail,
 }
 
 final router = UiRouter(
@@ -96,8 +95,8 @@ final router = UiRouter(
       build: (params) => const TradeResult(),
     ),
     UiPage(
-      id: PageId.itemDetail,
-      build: (params) => const ItemDetail(),
+      id: PageId.fruitDetail,
+      build: (params) => const FruitDetail(),
     ),
   ],
   dialogs: [

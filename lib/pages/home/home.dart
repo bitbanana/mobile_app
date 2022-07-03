@@ -29,6 +29,17 @@ class Home extends HookConsumerWidget {
       return const Text('BnnCardが見つかりません');
     }
 
+    /// 透明なトップバー
+    final topBar = Row(
+      children: [
+        const Spacer(),
+        TextButton(
+          onPressed: () {},
+          child: const Icon(Icons.menu),
+        ),
+      ],
+    );
+
     /// Exportボタン
     final exportButton = ElevatedButton(
       onPressed: () => _exportKey(context),
@@ -63,15 +74,17 @@ class Home extends HookConsumerWidget {
     final column = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Bit Banana (ビットバナナ) β版'),
+        topBar,
+        const SizedBox(height: 30),
         Rotating(
           interval: 2,
           duration: 2,
           backchild: reversedBanana,
           child: banana,
         ),
-        exportButton,
+        const SizedBox(height: 30),
         bnnCardWidget,
+        const Spacer(),
       ],
     );
 
